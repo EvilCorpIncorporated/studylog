@@ -1,4 +1,4 @@
-version: "3.8"
+version: '3.8'
 
 services:
   postgres:
@@ -10,11 +10,11 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
       PGDATA: /data/postgres
     volumes:
-      - "db-data:/data/postgres"
+      - 'db-data:/data/postgres'
     ports:
-      - "5432:5432"
+      - '5432:5432'
     networks:
-      - "studylog_network"
+      - 'studylog_network'
     restart: unless-stopped
 
   # pgadmin:
