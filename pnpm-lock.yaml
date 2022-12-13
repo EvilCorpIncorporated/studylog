@@ -23,19 +23,15 @@ importers:
       '@nuxt/test-utils': ^3.0.0
       '@sidebase/nuxt-prisma': ^0.1.0
       nuxt: 3.0.0
+      prisma: ^4.7.1
       vitest: ^0.25.8
     dependencies:
-      '@sidebase/nuxt-prisma': 0.1.0
+      '@sidebase/nuxt-prisma': 0.1.0_prisma@4.7.1
     devDependencies:
       '@nuxt/test-utils': 3.0.0_rollup@2.79.1+vue@3.2.45
       nuxt: 3.0.0_rollup@2.79.1
-      vitest: 0.25.8
-
-  packages/database:
-    specifiers:
-      prisma: ^4.7.1
-    devDependencies:
       prisma: 4.7.1
+      vitest: 0.25.8
 
   packages/eslint-config-custom:
     specifiers:
@@ -882,7 +878,7 @@ packages:
       - vti
     dev: true
 
-  /@prisma/client/4.7.1:
+  /@prisma/client/4.7.1_prisma@4.7.1:
     resolution: {integrity: sha512-/GbnOwIPtjiveZNUzGXOdp7RxTEkHL4DZP3vBaFNadfr6Sf0RshU5EULFzVaSi9i9PIK9PYd+1Rn7z2B2npb9w==}
     engines: {node: '>=14.17'}
     requiresBuild: true
@@ -893,6 +889,7 @@ packages:
         optional: true
     dependencies:
       '@prisma/engines-version': 4.7.1-1.272861e07ab64f234d3ffc4094e32bd61775599c
+      prisma: 4.7.1
     dev: false
 
   /@prisma/engines-version/4.7.1-1.272861e07ab64f234d3ffc4094e32bd61775599c:
@@ -902,7 +899,6 @@ packages:
   /@prisma/engines/4.7.1:
     resolution: {integrity: sha512-zWabHosTdLpXXlMefHmnouhXMoTB1+SCbUU3t4FCmdrtIOZcarPKU3Alto7gm/pZ9vHlGOXHCfVZ1G7OIrSbog==}
     requiresBuild: true
-    dev: true
 
   /@rollup/plugin-alias/4.0.2_rollup@2.79.1:
     resolution: {integrity: sha512-1hv7dBOZZwo3SEupxn4UA2N0EDThqSSS+wI1St1TNTBtOZvUchyIClyHcnDcjjrReTPZ47Faedrhblv4n+T5UQ==}
@@ -1034,10 +1030,10 @@ packages:
     resolution: {integrity: sha512-sXo/qW2/pAcmT43VoRKOJbDOfV3cYpq3szSVfIThQXNt+E4DfKj361vaAt3c88U5tPUxzEswam7GW48PJqtKAg==}
     dev: false
 
-  /@sidebase/nuxt-prisma/0.1.0:
+  /@sidebase/nuxt-prisma/0.1.0_prisma@4.7.1:
     resolution: {integrity: sha512-owJGQrgRlePDWeIFwhqbXlfejk9nMRBUi9BkSCEgYXcNhWdwwLrbjyZ+1torYKbSlUxPBss8uK7eH36lNJDQUQ==}
     dependencies:
-      '@prisma/client': 4.7.1
+      '@prisma/client': 4.7.1_prisma@4.7.1
       h3: 1.0.2
     transitivePeerDependencies:
       - prisma
@@ -4501,7 +4497,6 @@ packages:
     requiresBuild: true
     dependencies:
       '@prisma/engines': 4.7.1
-    dev: true
 
   /process-nextick-args/2.0.1:
     resolution: {integrity: sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag==}

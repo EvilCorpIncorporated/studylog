@@ -1,7 +1,0 @@
-{
-  "name": "database",
-  "private": true,
-  "devDependencies": {
-    "prisma": "^4.7.1"
-  }
-}
