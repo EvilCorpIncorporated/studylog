@@ -7,8 +7,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
-import logo from "~/assets/logo.svg";
+import { ref } from 'vue';
+import logo from '~/assets/logo.svg';
 
 const imageUrl = new URL(logo, import.meta.url).href;
 

@@ -20,6 +20,12 @@
     "web#build": {
       "outputs": [".output/**"]
     },
+    "test": {
+      "outputs": []
+    },
+    "test:watch": {
+      "cache": false
+    },
     "lint": {
       "outputs": []
     },
