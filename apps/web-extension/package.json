@@ -1,15 +1,15 @@
 {
-  "name": "vite-web-extension",
-  "version": "1.0.0",
-  "displayName": "Vite Web Extension",
-  "author": "@samrum/vite-plugin-web-extension",
+  "name": "@studylog/web-extension",
+  "private": true,
+  "version": "0.0.0",
+  "displayName": "StudyLog",
   "description": "A @samrum/vite-plugin-web-extension web extension",
   "scripts": {
     "build": "vue-tsc --noEmit && vite build",
     "watch": "vite build --watch",
     "dev": "vite",
-    "test:jest:watch": "npx jest --watch",
-    "test:jest:coverage": "npx jest --coverage=true",
+    "test:jest:watch": "jest --watch",
+    "test:jest:coverage": "jest --coverage=true",
     "serve:firefox": "web-ext run --start-url \"about:debugging#/runtime/this-firefox\"  --source-dir ./dist/",
     "serve:chrome": "web-ext run -t chromium --start-url \"https://google.com\" --source-dir ./dist/"
   },
