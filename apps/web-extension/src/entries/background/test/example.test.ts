@@ -1,5 +1,7 @@
-// jest test example
+import { describe, it } from 'vitest'
 
-it('test example', () => {
-  expect(Math.sqrt(4)).toBe(2);
+describe('example suite', () => {
+  it('example test', () => {
+    expect(2).toBe(2)
+  })
 });
