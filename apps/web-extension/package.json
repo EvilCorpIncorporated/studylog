@@ -8,8 +8,8 @@
     "build": "vue-tsc --noEmit && vite build",
     "watch": "vite build --watch",
     "dev": "vite",
-    "test:jest:watch": "jest --watch",
-    "test:jest:coverage": "jest --coverage=true",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage=true",
     "serve:firefox": "web-ext run --start-url \"about:debugging#/runtime/this-firefox\"  --source-dir ./dist/",
     "serve:chrome": "web-ext run -t chromium --start-url \"https://google.com\" --source-dir ./dist/"
   },
