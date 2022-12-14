@@ -10,5 +10,5 @@ import { it, describe, expect } from 'vitest';
 // }
 
 it('should set up the alarm', async () => {
-    expect(2).toBe(2)
+  expect(2).toBe(2);
 });
