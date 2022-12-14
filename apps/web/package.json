@@ -1,4 +1,5 @@
 {
+  "name": "@studylog/web",
   "private": true,
   "scripts": {
     "build": "nuxt build",

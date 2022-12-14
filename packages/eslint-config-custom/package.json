@@ -1,5 +1,5 @@
 {
-  "name": "eslint-config-custom",
+  "name": "@studylog/eslint-config",
   "version": "0.0.0",
   "main": "index.cjs",
   "license": "MIT",
@@ -9,7 +9,7 @@
     "eslint-config-turbo": "^0.0.7"
   },
   "devDependencies": {
-    "tsconfig": "workspace:*"
+    "@studylog/tsconfig": "workspace:*"
   },
   "publishConfig": {
     "access": "public"
