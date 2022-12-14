@@ -6,9 +6,9 @@ This Turborepo includes the following packages/apps:
 
 ### Apps and Packages
 
-- `web`: a [Nuxt](https://nuxt.com/) app with prisma on dockerized postgres
-- `eslint-config-custom`: `eslint` configurations (includes `@nuxt/eslint-config` and `eslint-config-prettier`)
-- `tsconfig`: `tsconfig.json`s used throughout the monorepo
+- `@studylog/web`: a [Nuxt](https://nuxt.com/) app with prisma on dockerized postgres
+- `@studylog/eslint-config`: `eslint` configurations (includes `@nuxt/eslint-config` and `eslint-config-prettier`)
+- `@studylog/tsconfig`: `tsconfig.json`s used throughout the monorepo
 
 Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
 

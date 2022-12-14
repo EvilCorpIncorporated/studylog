@@ -1,15 +1,17 @@
 {
-  "name": "eslint-config-custom",
+  "name": "@studylog/eslint-config",
   "version": "0.0.0",
   "main": "index.cjs",
   "license": "MIT",
   "dependencies": {
-    "@nuxt/eslint-config": "^0.1.1",
     "eslint-config-prettier": "^8.5.0",
     "eslint-config-turbo": "^0.0.7"
   },
+  "peerDependencies": {
+    "eslint-define-config": "^1.12.0"
+  },
   "devDependencies": {
-    "tsconfig": "workspace:*"
+    "@studylog/tsconfig": "workspace:*"
   },
   "publishConfig": {
     "access": "public"
