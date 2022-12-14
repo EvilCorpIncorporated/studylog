@@ -17,6 +17,7 @@
   "license": "MIT",
   "devDependencies": {
     "@samrum/vite-plugin-web-extension": "^2.0.0",
+    "@studylog/tsconfig": "workspace:*",
     "@types/chrome": "^0.0.196",
     "@vitejs/plugin-vue": "^3.1.0",
     "@vitest/coverage-c8": "^0.25.8",

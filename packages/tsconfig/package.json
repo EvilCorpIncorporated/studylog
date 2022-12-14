@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@tsconfig/node18-strictest": "^1.0.0",
-    "@tsconfig/node18-strictest-esm": "^1.0.1"
+    "@tsconfig/node18-strictest-esm": "^1.0.1",
+    "@vue/tsconfig": "^0.1.3"
   }
 }
