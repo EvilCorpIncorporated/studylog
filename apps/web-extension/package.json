@@ -9,7 +9,8 @@
     "build": "vue-tsc --noEmit && vite build",
     "watch": "vite build --watch",
     "dev": "vite",
-    "test": "vitest",
+    "test": "vitest run",
+    "test:watch": "vitest --watch",
     "test:coverage": "vitest --coverage",
     "serve:firefox": "web-ext run --start-url \"about:debugging#/runtime/this-firefox\"  --source-dir ./dist/",
     "serve:chrome": "web-ext run -t chromium --start-url \"https://google.com\" --source-dir ./dist/"
@@ -25,6 +26,7 @@
     "vitest": "^0.25.8",
     "vitest-github-actions-reporter": "^0.9.0",
     "vitest-github-actions-summary-reporter": "^0.1.1",
+    "vitest-mock-extended": "^1.0.7",
     "vue-tsc": "^0.40.8",
     "web-ext": "^7.2.0"
   },

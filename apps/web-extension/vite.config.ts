@@ -5,8 +5,7 @@ import vue from '@vitejs/plugin-vue';
 import webExtension from '@samrum/vite-plugin-web-extension';
 import path from 'path';
 import { getManifest } from './manifest';
-import { GithubActionsReporter as GithubActionsSummaryReporter } from 'vitest-github-actions-summary-reporter';
-import GithubActionsReporter from 'vitest-github-actions-reporter';
+import autoImport from 'unplugin-auto-import/vite';
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
@@ -14,19 +13,19 @@ export default defineConfig(({ mode }) => {
 
   return {
     plugins: [
-      vue(),
-      webExtension({
-        manifest: getManifest(Number(env['MANIFEST_VERSION'])),
+      autoImport({
+        imports: [
+          'vue',
+          'vue/macros',
+          {
+            'webextension-polyfill': [['*', 'browser']],
+          },
+        ],
       }),
+      webExtension({ manifest: getManifest(Number(env['MANIFEST_VERSION'])) }),
     ],
     test: {
-      reporters: process.env['GITHUB_ACTIONS']
-        ? [
-            'default',
-            new GithubActionsReporter(),
-            new GithubActionsSummaryReporter(),
-          ]
-        : 'default',
+      setupFiles: './vitest.setup.ts',
     },
     resolve: {
       alias: {
