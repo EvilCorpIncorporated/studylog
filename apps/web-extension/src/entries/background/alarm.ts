@@ -2,7 +2,6 @@
 import * as browser from 'webextension-polyfill';
 
 const alarmName = 'sendTabEvents';
-export async function setupAlarm() {
-    await browser.alarms.create(alarmName, { periodInMinutes: 1 });
+export function setupAlarm() {
+  browser.alarms.create(alarmName, { periodInMinutes: 1 });
 }
-
