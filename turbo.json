@@ -1,12 +1,23 @@
 {
   "$schema": "https://turbo.build/schema.json",
+  "globalDependencies": [
+    "packages/tsconfig/*.json",
+    "**/.env{,.*}",
+    "**/!.env.example",
+    "**/tsconfig{,.*}.json",
+    "**/vite.config.ts",
+    "**/jest.config.c?js",
+    "**/.eslintrc.c?js"
+  ],
   "pipeline": {
     "dev": {
       "dependsOn": ["^db:generate"],
       "cache": false
     },
     "build": {
-      "dependsOn": ["^db:generate"],
+      "dependsOn": ["^build", "^db:generate"]
+    },
+    "web#build": {
       "outputs": [".output/**"]
     },
     "test": {

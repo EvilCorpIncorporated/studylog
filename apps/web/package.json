@@ -1,9 +1,11 @@
 {
+  "name": "@studylog/web",
   "private": true,
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
     "test": "nuxt test",
+    "lint": "eslint --fix .",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
@@ -11,7 +13,10 @@
     "db:push": "prisma db push --skip-generate"
   },
   "devDependencies": {
+    "@nuxt/eslint-config": "^0.1.1",
     "@nuxt/test-utils": "^3.0.0",
+    "eslint": "^8.29.0",
+    "@studylog/eslint-config": "workspace:*",
     "nuxt": "3.0.0",
     "prisma": "^4.7.1",
     "vitest": "^0.25.8"
