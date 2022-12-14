@@ -12,7 +12,7 @@ beforeAll(() => {
       {},
       {
         get(target, prop, receiver) {
-          const matches = prop.toString().match(/^fon([A-Z][A-Za-z]*)$/);
+          const matches = prop.toString().match(/^on([A-Z][A-Za-z]*)$/);
           if (matches == null) {
             return Reflect.get(target, prop, receiver);
           }
