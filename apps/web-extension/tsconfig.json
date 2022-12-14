@@ -1,5 +1,5 @@
 {
-  "extends": "@studylog/tsconfig/vue.json"
+  "extends": "@studylog/tsconfig/vue.json",
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
