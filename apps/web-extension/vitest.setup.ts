@@ -1,34 +1,34 @@
 import { beforeAll, vi } from 'vitest';
 import type { Browser } from 'webextension-polyfill';
 
-declare global {
-  const abrowser: typeof browser;
-}
+// declare global {
+//   const abrowser: typeof browser;
+// }
 
-const addListenerMock = vi.fn().mockImplementation((_) => { });
-const storageGet = vi.fn().mockImplementation(() => { });
-const storageSet = vi.fn().mockImplementation(() => { });
+// const addListenerMock = vi.fn().mockImplementation((_) => { });
+// const storageGet = vi.fn().mockImplementation(() => { });
+// const storageSet = vi.fn().mockImplementation(() => { });
 
-const mockBrowser = {
-  tabs: {
-    onUpdated: {
-      addListener: addListenerMock,
-    },
-    onActivated: {
-      addListener: addListenerMock,
-    },
-    onRemoved: {
-      addListener: addListenerMock,
-    },
-    onCreated: {
-      addListener: addListenerMock,
-    },
-  },
-  storage: {
-    get: storageGet,
-    set: storageSet
-  }
-}
+// const mockBrowser = {
+//   tabs: {
+//     onUpdated: {
+//       addListener: addListenerMock,
+//     },
+//     onActivated: {
+//       addListener: addListenerMock,
+//     },
+//     onRemoved: {
+//       addListener: addListenerMock,
+//     },
+//     onCreated: {
+//       addListener: addListenerMock,
+//     },
+//   },
+//   storage: {
+//     get: storageGet,
+//     set: storageSet
+//   }
+// }
 
 beforeAll(() => {
   // (globalThis as any).chrome = { runtime: { id: 'TESTING' } };
@@ -36,7 +36,7 @@ beforeAll(() => {
   vi.mock('webextension-polyfill', () => {
     const addListenerMock = vi
       .fn()
-      .mockImplementation((..._args: unknown[]) => {});
+      .mockImplementation((..._args: unknown[]) => { });
     const tabs = new Proxy(
       {},
       {
