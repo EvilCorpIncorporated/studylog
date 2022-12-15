@@ -15,14 +15,21 @@
   "devDependencies": {
     "@nuxt/eslint-config": "^0.1.1",
     "@nuxt/test-utils": "^3.0.0",
-    "eslint": "^8.29.0",
     "@studylog/eslint-config": "workspace:*",
+    "@vueuse/core": "^9.6.0",
+    "@vueuse/nuxt": "^9.6.0",
+    "@vueuse/router": "^9.6.0",
+    "eslint": "^8.29.0",
     "nuxt": "3.0.0",
     "prisma": "^4.7.1",
     "vitest": "^0.25.8"
   },
   "dependencies": {
-    "@sidebase/nuxt-prisma": "^0.1.0"
+    "@sidebase/nuxt-prisma": "^0.1.0",
+    "@trpc/client": "^10.5.0",
+    "@trpc/server": "^10.5.0",
+    "trpc-nuxt": "^0.4.3",
+    "zod": "^3.20.2"
   },
   "pnpm": {
     "peerDependencyRules": {
