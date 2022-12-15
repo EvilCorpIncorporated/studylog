@@ -1,4 +1,4 @@
-import { vi, describe, it, expect, beforeAll } from 'vitest';
+import { vi, describe, it, expect, beforeAll, beforeEach } from 'vitest';
 import { setupEventHandlers } from '../tabEventHandlers';
 
 describe('setupTabEventHandlers', () => {

@@ -1,6 +1,35 @@
 import { beforeAll, vi } from 'vitest';
 import type { Browser } from 'webextension-polyfill';
 
+declare global {
+  const abrowser: typeof browser;
+}
+
+const addListenerMock = vi.fn().mockImplementation((_) => { });
+const storageGet = vi.fn().mockImplementation(() => { });
+const storageSet = vi.fn().mockImplementation(() => { });
+
+const mockBrowser = {
+  tabs: {
+    onUpdated: {
+      addListener: addListenerMock,
+    },
+    onActivated: {
+      addListener: addListenerMock,
+    },
+    onRemoved: {
+      addListener: addListenerMock,
+    },
+    onCreated: {
+      addListener: addListenerMock,
+    },
+  },
+  storage: {
+    get: storageGet,
+    set: storageSet
+  }
+}
+
 beforeAll(() => {
   // (globalThis as any).chrome = { runtime: { id: 'TESTING' } };
   vi.stubGlobal('chrome', { runtime: { id: 'TESTING' } });
