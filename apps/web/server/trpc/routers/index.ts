@@ -1,7 +1,9 @@
 import { z } from 'zod';
 import { publicProcedure, router } from '../trpc';
+
 let currentId = 2;
-interface User {
+
+export interface User {
   id: number;
   name: {
     first: string;
