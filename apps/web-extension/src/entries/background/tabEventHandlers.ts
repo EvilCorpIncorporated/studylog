@@ -6,17 +6,17 @@ export function setupEventHandlers() {
 }
 
 // TODO: add types to these input arguments
-async function onTabCreatedHandler(tab: browser.Tabs.Tab) {
+async function onTabCreatedHandler(tab: browser.Tabs.Tab) {}
+async function onTabRemovedHandler(
+  removeInfo: browser.Tabs.OnRemovedRemoveInfoType,
+) {}
 
-}
-async function onTabRemovedHandler(removeInfo: browser.Tabs.OnRemovedRemoveInfoType) { }
-
-async function onTabActivatedHandler({ tabId }: Tabs.OnActivatedActiveInfoType) {
-
-}
+async function onTabActivatedHandler({
+  tabId,
+}: Tabs.OnActivatedActiveInfoType) {}
 
 async function onTabUpdatedHandler(
-    _tabId: number,
-    changeInfo: browser.Tabs.OnUpdatedChangeInfoType,
-    _tab: browser.Tabs.Tab,
-) { }
+  _tabId: number,
+  changeInfo: browser.Tabs.OnUpdatedChangeInfoType,
+  _tab: browser.Tabs.Tab,
+) {}
