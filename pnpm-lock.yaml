@@ -22,7 +22,6 @@ importers:
       '@studylog/eslint-config': workspace:*
       '@studylog/trpc': workspace:*
       '@trpc/client': ^10.5.0
-      '@trpc/server': ^10.5.0
       '@vueuse/core': ^9.6.0
       '@vueuse/nuxt': ^9.6.0
       '@vueuse/router': ^9.6.0
@@ -34,9 +33,8 @@ importers:
     dependencies:
       '@sidebase/nuxt-prisma': 0.1.0_prisma@4.7.1
       '@studylog/trpc': link:../../packages/trpc
-      '@trpc/client': 10.5.0_@trpc+server@10.5.0
-      '@trpc/server': 10.5.0
-      trpc-nuxt: 0.4.3_fgwznsp6pxdlh4ivcpyzgl5zoq
+      '@trpc/client': 10.5.0
+      trpc-nuxt: 0.4.3_@trpc+client@10.5.0
     devDependencies:
       '@nuxt/eslint-config': 0.1.1_eslint@8.29.0
       '@nuxt/test-utils': 3.0.0
@@ -2419,11 +2417,9 @@ packages:
       defer-to-connect: 2.0.1
     dev: true
 
-  /@trpc/client/10.5.0_@trpc+server@10.5.0:
+  /@trpc/client/10.5.0:
     resolution: {integrity: sha512-ULRL6YUi/4sMzZnqS3VCe/VduPZgY24wdC4canpwWZfHj+O0kHz3KR260DzEw0QrpLrOwmkIWOlQKzVBn2lLgQ==}
     peerDependencies:
-      '@trpc/server': 10.5.0
-    dependencies:
       '@trpc/server': 10.5.0
     dev: false
 
@@ -9716,14 +9712,13 @@ packages:
     resolution: {integrity: sha512-N3WMsuqV66lT30CrXNbEjx4GEwlow3v6rr4mCcv6prnfwhS01rkgyFdjPNBYd9br7LpXV1+Emh01fHnq2Gdgrw==}
     dev: true
 
-  /trpc-nuxt/0.4.3_fgwznsp6pxdlh4ivcpyzgl5zoq:
+  /trpc-nuxt/0.4.3_@trpc+client@10.5.0:
     resolution: {integrity: sha512-rLP//Hu1wtSlRduHIgw8OiakdV3Z0CjQOzmzRaT1SSrmm4EDURMCNWXbMqRlwDtvYlXVsQGzjNReHSd4v4dvsQ==}
     peerDependencies:
       '@trpc/client': ^10.0.0
       '@trpc/server': ^10.0.0
     dependencies:
-      '@trpc/client': 10.5.0_@trpc+server@10.5.0
-      '@trpc/server': 10.5.0
+      '@trpc/client': 10.5.0
       h3: 1.0.2
       nanoid: 4.0.0
       ohash: 1.0.0
