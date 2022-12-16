@@ -2,5 +2,5 @@ const { defineConfig } = require('eslint-define-config');
 
 module.exports = defineConfig({
   root: true,
-  extends: ['@studylog/eslint-config', '@nuxt/eslint-config'],
+  extends: ['@nuxt/eslint-config', '@studylog/eslint-config'],
 });

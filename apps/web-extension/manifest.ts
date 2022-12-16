@@ -1,5 +1,5 @@
-import pkg from './package.json';
 import type { Manifest } from 'webextension-polyfill';
+import pkg from './package.json';
 
 const sharedManifest: Partial<Manifest.WebExtensionManifest> = {
   content_scripts: [
