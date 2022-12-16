@@ -13,6 +13,7 @@ export default defineConfig(({ mode }) => {
 
   return {
     plugins: [
+      vue({ reactivityTransform: true }),
       autoImport({
         imports: [
           'vue',
