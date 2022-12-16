@@ -53,6 +53,8 @@ importers:
       '@babel/preset-env': ^7.20.2
       '@babel/preset-typescript': ^7.18.6
       '@samrum/vite-plugin-web-extension': ^2.0.0
+      '@studylog/trpc': workspace:*
+      '@trpc/client': ^10.5.0
       '@types/chrome': ^0.0.196
       '@vitejs/plugin-vue': ^3.1.0
       '@vitest/coverage-c8': ^0.25.8
@@ -64,6 +66,8 @@ importers:
       vue-tsc: ^0.40.8
       web-ext: ^7.2.0
     dependencies:
+      '@studylog/trpc': link:../../packages/trpc
+      '@trpc/client': 10.5.0
       vue: 3.2.45
     devDependencies:
       '@babel/core': 7.20.5
