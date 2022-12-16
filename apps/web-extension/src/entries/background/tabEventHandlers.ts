@@ -9,7 +9,10 @@ export function setupEventHandlers() {
 
 // TODO: add types to these input arguments
 async function onTabCreatedHandler(_tab: Tabs.Tab) {}
-async function onTabRemovedHandler(_tabId: number, _removeInfo: Tabs.OnRemovedRemoveInfoType) {}
+async function onTabRemovedHandler(
+  _tabId: number,
+  _removeInfo: Tabs.OnRemovedRemoveInfoType,
+) {}
 
 async function onTabActivatedHandler({
   tabId: _tabId,

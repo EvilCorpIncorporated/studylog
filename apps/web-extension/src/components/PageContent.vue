@@ -1,12 +1,9 @@
 <script setup lang="ts">
-import { ref } from 'vue';
 import logo from '~/assets/logo.svg';
 
 const imageUrl = new URL(logo, import.meta.url).href;
 
-const count = ref(0);
-
-const increment = () => (count.value += 1);
+const count = $ref(0);
 </script>
 
 <template>
@@ -14,7 +11,7 @@ const increment = () => (count.value += 1);
   <h1>
     <slot></slot>
   </h1>
-  <button type="button" @click="increment">Clicks: {{ count }}</button>
+  <button type="button" @click="count++">Clicks: {{ count }}</button>
 </template>
 
 <style>

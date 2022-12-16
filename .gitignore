@@ -151,3 +151,4 @@ dist
 package-lock.json
 yarn.lock
 apps/**/auto-imports.d.ts
+apps/**/components.d.ts
