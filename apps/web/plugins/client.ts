@@ -1,5 +1,7 @@
 import { httpBatchLink, createTRPCProxyClient } from '@trpc/client';
-import type { AppRouter } from '@/server/trpc/routers';
+// HACK: the following doesn't seem to work, has something to do with package.json subpath exports.
+// import type { AppRouter } from '@studylog/trpc/routers';
+import type { AppRouter } from '@studylog/trpc/src/routers';
 import { FetchError } from 'ofetch';
 
 export default defineNuxtPlugin(() => {

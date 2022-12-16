@@ -1,0 +1,6 @@
+{
+  "extends": "@studylog/tsconfig/node-esm.json",
+  "compilerOptions": {
+    "moduleResolution": "node"
+  }
+}
