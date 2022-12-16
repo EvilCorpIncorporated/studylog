@@ -1,3 +1,5 @@
+import type { Tabs } from 'webextension-polyfill';
+
 export function setupEventHandlers() {
   browser.tabs.onUpdated.addListener(onTabUpdatedHandler);
   browser.tabs.onActivated.addListener(onTabActivatedHandler);
@@ -6,17 +8,15 @@ export function setupEventHandlers() {
 }
 
 // TODO: add types to these input arguments
-async function onTabCreatedHandler(tab: browser.Tabs.Tab) {}
-async function onTabRemovedHandler(
-  removeInfo: browser.Tabs.OnRemovedRemoveInfoType,
-) {}
+async function onTabCreatedHandler(_tab: Tabs.Tab) {}
+async function onTabRemovedHandler(_tabId: number, _removeInfo: Tabs.OnRemovedRemoveInfoType) {}
 
 async function onTabActivatedHandler({
-  tabId,
+  tabId: _tabId,
 }: Tabs.OnActivatedActiveInfoType) {}
 
 async function onTabUpdatedHandler(
   _tabId: number,
-  changeInfo: browser.Tabs.OnUpdatedChangeInfoType,
-  _tab: browser.Tabs.Tab,
+  _changeInfo: Tabs.OnUpdatedChangeInfoType,
+  _tab: Tabs.Tab,
 ) {}
