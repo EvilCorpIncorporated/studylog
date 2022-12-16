@@ -27,6 +27,7 @@ export default defineConfig(({ mode }) => {
         imports: [
           'vue',
           'vue/macros',
+          '@vueuse/core',
           {
             'webextension-polyfill': [['*', 'browser']],
           },

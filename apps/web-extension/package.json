@@ -20,6 +20,7 @@
   "dependencies": {
     "@types/webextension-polyfill": "^0.9.2",
     "@vueuse/components": "^9.6.0",
+    "@vueuse/core": "^9.6.0",
     "unplugin-auto-import": "^0.12.1",
     "vue": "^3.2.38",
     "webextension-polyfill": "^0.10.0"
