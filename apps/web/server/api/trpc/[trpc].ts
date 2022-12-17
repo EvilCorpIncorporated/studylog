@@ -1,6 +1,8 @@
 import { createNuxtApiHandler } from 'trpc-nuxt';
-import { appRouter } from '@/server/trpc/routers';
-import { createContext } from '@/server/trpc/context';
+// @ts-expect-error HACK: something to do with package.json subpath exports.
+import { appRouter } from '@studylog/trpc/routers';
+// @ts-expect-error HACK: something to do with package.json subpath exports.
+import { createContext } from '@studylog/trpc/context';
 
 // export API handler
 export default createNuxtApiHandler({
