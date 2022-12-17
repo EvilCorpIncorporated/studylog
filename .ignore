@@ -6,3 +6,4 @@ pnpm-lock.yaml
 dist
 **/coverage
 apps/**/auto-imports.d.ts
+apps/**/components.d.ts
