@@ -1,7 +1,11 @@
-import type { MockzillaDeep } from 'mockzilla';
-import { type MockzillaEventOf, mockEvent } from 'mockzilla-webextension';
-// import type { Events, Tabs } from 'webextension-polyfill';
-import { onTabActivatedHandler, setupEventHandlers } from '../events';
+// jest test example
+
+import { MockzillaDeep } from 'mockzilla';
+import { mockEvent, MockzillaEventOf } from 'mockzilla-webextension';
+import { Events, Tabs } from 'webextension-polyfill';
+import {onTabActivatedHandler, setupEventHandlers} from '../events';
+
+
 it('test example', () => {
   expect(Math.sqrt(4)).toBe(2);
 });

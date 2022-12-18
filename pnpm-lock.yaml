@@ -8278,7 +8278,7 @@ packages:
       webextension-polyfill: 0.10.0
     dev: true
 
-  /mockzilla/0.14.0_bqve5x7jam5662ylzpcr5ubdjm:
+  /mockzilla/0.14.0:
     resolution: {integrity: sha512-vkRwyJaAAeTj6oH9NHUDELhUCwTCYleLZoNmo4+o08/hoUGn7tle3yZjp3Q4ZQ2HUEEFwpGJh50ZFMWWhLgI5Q==}
     peerDependencies:
       '@jest/expect-utils': ^28.0.0
@@ -8287,13 +8287,6 @@ packages:
       jest-diff: ^28.0.0
       jest-message-util: ^28.0.0
       jest-validate: ^28.0.0
-    dependencies:
-      '@jest/expect-utils': 28.1.3
-      chalk: 4.1.2
-      expect: 28.1.3
-      jest-diff: 28.1.3
-      jest-message-util: 28.1.3
-      jest-validate: 28.1.3
     dev: true
 
   /moment/2.29.4:

@@ -7,6 +7,7 @@ import {
   setupEventHandlers,
 } from '../events';
 
+
 describe('setupTabEventHandlers', () => {
   let onRemoved: MockzillaEventOf<typeof mockBrowser.tabs.onRemoved>;
   let onCreated: MockzillaEventOf<typeof mockBrowser.tabs.onCreated>;
