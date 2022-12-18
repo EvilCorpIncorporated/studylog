@@ -1,5 +1,4 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { describe, expect, it } from 'vitest';
 // make sure the alarm is set
 
 // describe('alarm', () => {
