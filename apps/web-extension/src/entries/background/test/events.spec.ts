@@ -1,6 +1,6 @@
-import { MockzillaDeep } from 'mockzilla';
-import { MockzillaEventOf } from 'mockzilla-webextension';
-import { Events, Tabs } from 'webextension-polyfill';
+import type { MockzillaDeep } from 'mockzilla';
+import type { MockzillaEventOf } from 'mockzilla-webextension';
+// import type { Events, Tabs } from 'webextension-polyfill';
 import {
   onTabActivatedHandler,
   onTabUpdatedHandler,

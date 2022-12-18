@@ -1,5 +1,5 @@
 import type { MockzillaDeep } from 'mockzilla';
-import { mockEvent, type MockzillaEventOf } from 'mockzilla-webextension';
+import { type MockzillaEventOf, mockEvent } from 'mockzilla-webextension';
 // import type { Events, Tabs } from 'webextension-polyfill';
 import { onTabActivatedHandler, setupEventHandlers } from '../events';
 it('test example', () => {

@@ -1,5 +1,6 @@
 // define events here
 
+import browser from 'webextension-polyfill';
 import type { Tabs } from 'webextension-polyfill';
 
 // onTabActivatedHandler, onTabUpdatedHandler, setupEventHandlers
@@ -14,7 +15,7 @@ export function setupEventHandlers() {
 export function setupTabEventHandlers() {
   // setup tab event handlers
   // ignore this for now
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
+
   browser.tabs.onActivated.addListener(onTabActivatedHandler);
   // browser.tabs.onUpdated.addListener(onUpdatedHandler);
 }

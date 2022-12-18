@@ -1,4 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 // make sure the alarm is set
 
 // describe('alarm', () => {

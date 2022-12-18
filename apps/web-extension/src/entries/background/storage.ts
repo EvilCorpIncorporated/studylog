@@ -2,6 +2,7 @@
 
 // import type { FilteredTab, TabWithTimestamp } from '~/logic';
 
+import browser from 'webextension-polyfill';
 import type { Tabs } from 'webextension-polyfill';
 
 type Events = any;

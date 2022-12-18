@@ -10,6 +10,7 @@
     "vite.config.ts",
     "manifest.ts",
     "package.json",
-    ".*cjs"
+    ".*cjs",
+    "*.config.cjs"
   ]
 }

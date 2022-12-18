@@ -1,3 +1,4 @@
+import browser from 'webextension-polyfill';
 import type { Tabs } from 'webextension-polyfill';
 
 export function setupEventHandlers() {
