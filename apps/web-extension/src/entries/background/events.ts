@@ -17,7 +17,7 @@ export function setupTabEventHandlers() {
   // ignore this for now
 
   browser.tabs.onActivated.addListener(onTabActivatedHandler);
-  // browser.tabs.onUpdated.addListener(onUpdatedHandler);
+  browser.tabs.onUpdated.addListener(onTabUpdatedHandler);
 }
 
 export function onTabActivatedHandler(
