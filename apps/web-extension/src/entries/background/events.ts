@@ -1,6 +1,6 @@
 // define events here
 
-import { Tabs } from 'webextension-polyfill';
+import type { Tabs } from 'webextension-polyfill';
 
 // onTabActivatedHandler, onTabUpdatedHandler, setupEventHandlers
 export function setupEventHandlers() {

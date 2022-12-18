@@ -12,3 +12,5 @@
 it('should set up the alarm', async () => {
   expect(2).toBe(2);
 });
+
+export {};
