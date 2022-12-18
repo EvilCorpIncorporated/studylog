@@ -5,12 +5,13 @@ import { defineConfig, loadEnv } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import webExtension from '@samrum/vite-plugin-web-extension';
 import autoImport from 'unplugin-auto-import/vite';
-// import components from 'unplugin-vue-components/vite';
-// import {
-//   VueUseComponentsResolver,
-//   VueUseDirectiveResolver,
-// } from 'unplugin-vue-components/resolvers';
-import { getManifest } from './src/manifest';
+import components from 'unplugin-vue-components/vite';
+import {
+  VueUseComponentsResolver,
+  VueUseDirectiveResolver,
+} from 'unplugin-vue-components/resolvers';
+import { getManifest } from './manifest';
+
 interface NodeEnv extends Record<string, string> {
   MANIFEST_VERSION: '2' | '3';
 }
@@ -32,9 +33,9 @@ export default defineConfig(({ mode }) => {
           },
         ],
       }),
-      // components({
-      //   resolvers: [VueUseComponentsResolver(), VueUseDirectiveResolver()],
-      // }),
+      components({
+        resolvers: [VueUseComponentsResolver(), VueUseDirectiveResolver()],
+      }),
       webExtension({ manifest: getManifest(Number(env.MANIFEST_VERSION)) }),
     ],
     test: {

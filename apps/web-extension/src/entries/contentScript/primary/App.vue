@@ -1,14 +1,14 @@
-<template>
-  <div class="logo">
-    <img :src="logoImageUrl" height="50" alt="" />
-  </div>
-</template>
-
 <script setup lang="ts">
 import logo from '~/assets/logo.svg';
 
 const logoImageUrl = new URL(logo, import.meta.url).href;
 </script>
+
+<template>
+  <div class="logo">
+    <img :src="logoImageUrl" height="50" alt="" />
+  </div>
+</template>
 
 <style scoped>
 .logo {

@@ -1,4 +1,4 @@
-// jest test example
+import { describe, expect, it } from 'vitest';
 
 import { MockzillaDeep } from 'mockzilla';
 import { mockEvent, MockzillaEventOf } from 'mockzilla-webextension';

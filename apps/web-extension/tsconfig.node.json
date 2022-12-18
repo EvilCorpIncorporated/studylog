@@ -1,8 +1,16 @@
 {
+  "extends": "@studylog/tsconfig/node-esm.json",
   "compilerOptions": {
     "composite": true,
-    "module": "esnext",
-    "moduleResolution": "node"
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "types": ["node"]
   },
-  "include": ["vite.config.ts"]
+  "include": [
+    "vite.config.ts",
+    "manifest.ts",
+    "package.json",
+    ".*cjs",
+    "vitest.setup.ts"
+  ]
 }
