@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { publicProcedure, router } from '../trpc';
+import { publicProcedure, router } from '..';
 
 let currentId = 2;
 
@@ -52,7 +52,7 @@ export const appRouter = router({
       const newUser = {
         id: ++currentId,
         name,
-      };
+      } as User; // HACK: we shouldn't need to coerce here.
       USERS.push(newUser);
       return newUser;
     }),
