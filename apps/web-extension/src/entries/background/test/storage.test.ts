@@ -1,9 +1,9 @@
 // import { getStorage, merge } from '../storage';
 describe('', () => {
-    it("", () => {
-        expect(true).toEqual(true)
-    })
-})
+  it('', () => {
+    expect(true).toEqual(true);
+  });
+});
 // describe('merge', () => {
 //     it('should handle undefined data', () => {
 //         const existingData = {
@@ -52,8 +52,6 @@ describe('', () => {
 //         expect(result).toEqual(expected);
 //     });
 // });
-
-
 
 // // describe('getStorage', () => {
 // //     beforeEach(() => {

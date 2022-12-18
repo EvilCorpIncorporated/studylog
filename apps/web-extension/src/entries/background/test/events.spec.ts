@@ -1,27 +1,30 @@
 import { MockzillaDeep } from 'mockzilla';
 import { MockzillaEventOf } from 'mockzilla-webextension';
 import { Events, Tabs } from 'webextension-polyfill';
-import { onTabActivatedHandler, onTabUpdatedHandler, setupEventHandlers } from '../events';
+import {
+  onTabActivatedHandler,
+  onTabUpdatedHandler,
+  setupEventHandlers,
+} from '../events';
 
 describe('setupTabEventHandlers', () => {
-    let onRemoved: MockzillaEventOf<typeof mockBrowser.tabs.onRemoved>;
-    let onCreated: MockzillaEventOf<typeof mockBrowser.tabs.onCreated>;
+  let onRemoved: MockzillaEventOf<typeof mockBrowser.tabs.onRemoved>;
+  let onCreated: MockzillaEventOf<typeof mockBrowser.tabs.onCreated>;
 
-    beforeEach(() => {
-        // onRemoved = MockEvent(mockBrowser.tabs.onRemoved);
-        // onCreated = MockEvent(mockBrowser.tabs.onCreated);
-    });
-    
-    it('should set up the event handlers', () => {
-        // setupEventHandlers();
-        // expect(mockBrowser.tabs).toBeCalled();
-        // expect(spy).toBeCalled();
-        // expect(mockBrowser.tabs.onActivated.addListener).toBeCalled();
-        // expect(mockBrowser.tabs.onRemoved.addListener).toBeCalled();
-        // expect(mockBrowser.tabs.onCreated.addListener).toBeCalled();
-    });
+  beforeEach(() => {
+    // onRemoved = MockEvent(mockBrowser.tabs.onRemoved);
+    // onCreated = MockEvent(mockBrowser.tabs.onCreated);
+  });
+
+  it('should set up the event handlers', () => {
+    // setupEventHandlers();
+    // expect(mockBrowser.tabs).toBeCalled();
+    // expect(spy).toBeCalled();
+    // expect(mockBrowser.tabs.onActivated.addListener).toBeCalled();
+    // expect(mockBrowser.tabs.onRemoved.addListener).toBeCalled();
+    // expect(mockBrowser.tabs.onCreated.addListener).toBeCalled();
+  });
 });
-
 
 // describe('tab event listener functionality', () => {
 //     beforeEach(() => {

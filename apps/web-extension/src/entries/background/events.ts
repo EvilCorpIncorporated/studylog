@@ -1,8 +1,8 @@
 // define events here
 
-import { Tabs } from "webextension-polyfill";
+import { Tabs } from 'webextension-polyfill';
 
-// onTabActivatedHandler, onTabUpdatedHandler, setupEventHandlers 
+// onTabActivatedHandler, onTabUpdatedHandler, setupEventHandlers
 export function setupEventHandlers() {
   // setup event handlers
   setupTabEventHandlers();
@@ -19,14 +19,16 @@ export function setupTabEventHandlers() {
   // browser.tabs.onUpdated.addListener(onUpdatedHandler);
 }
 
-export function onTabActivatedHandler(activeInfo: Tabs.OnActivatedActiveInfoType) {
+export function onTabActivatedHandler(
+  activeInfo: Tabs.OnActivatedActiveInfoType,
+) {
   console.log('onActivatedHandler', activeInfo);
 }
 
 export function onTabUpdatedHandler(
-    tabId: number,
-    changeInfo: Tabs.OnUpdatedChangeInfoType,
-    tab: Tabs.Tab,
-    ) {
-    console.log('onUpdatedHandler', tabId, changeInfo, tab);
-    }
+  tabId: number,
+  changeInfo: Tabs.OnUpdatedChangeInfoType,
+  tab: Tabs.Tab,
+) {
+  console.log('onUpdatedHandler', tabId, changeInfo, tab);
+}

@@ -1,2 +1,2 @@
-import "mockzilla-webextension";
-import * as browser from 'webextension-polyfill'
+import 'mockzilla-webextension';
+import * as browser from 'webextension-polyfill';
