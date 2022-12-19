@@ -1,14 +1,14 @@
 import browser from 'webextension-polyfill';
 import { alarmNames } from './constants/alarmNames';
-
+import { sendEvents } from './api';
 
   // Create a new alarm for heartbeats.
 
 const alarmHandlers = {
-  [alarmNames.heartbeatAlarm]: () => {
+  [alarmNames.heartbeatAlarm]: async () => {
     console.log('recording a heartbeat - alarm triggered');
     // send heartbeat to server
-    sendEvents();
+    await sendEvents();
   }
 }
 
@@ -17,13 +17,9 @@ export function setupAlarms() {
   browser.alarms.create(alarmNames.heartbeatAlarm, { periodInMinutes: 1});
 
 
-  browser.alarms.onAlarm.addListener( (alarm) => {
+  browser.alarms.onAlarm.addListener(async (alarm) => {
     // TODO: remove this check - this is a violation of the single responsibility principle, and should be handled in a separate function
       alarmHandlers[alarm.name]();
   });
 
-}
-
-function sendEvents() {
-throw new Error('Function not implemented.');
 }
