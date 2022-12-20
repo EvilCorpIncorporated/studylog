@@ -3,6 +3,7 @@
 import browser from 'webextension-polyfill';
 import type { Tabs } from 'webextension-polyfill'; // onTabActivatedHandler, onTabUpdatedHandler, setupEventHandlers
 import { alarmNames } from './constants/alarmNames';
+import {addTabToLocalStore} from './storage';
 
 // onTabActivatedHandler, onTabUpdatedHandler, setupEventHandlers
 export function setupEventHandlers() {
@@ -15,16 +16,23 @@ export function setupEventHandlers() {
 
 export function setupTabEventHandlers() {
   // setup tab event handlers
-  // ignore this for now
-
   browser.tabs.onActivated.addListener(onTabActivatedHandler);
   browser.tabs.onUpdated.addListener(onTabUpdatedHandler);
 }
 
-export function onTabActivatedHandler(
+/**
+ * Whenever a active tab is changed it records a heartbeat with that tab url.
+ */
+export async function onTabActivatedHandler(
   activeInfo: Tabs.OnActivatedActiveInfoType,
 ) {
-  console.log('onActivatedHandler', activeInfo);
+  // get the active tab
+    let queryOptions = { active: true};
+    // `tab` will either be a `tabs.Tab` instance or `undefined`.
+    let [tab] = await browser.tabs.query(queryOptions);
+    console.log('onActivatedHandler',tab);
+  // add tab to localStorage
+  addTabToLocalStore(tab);
 }
 
 export function onTabUpdatedHandler(
@@ -32,20 +40,7 @@ export function onTabUpdatedHandler(
   changeInfo: Tabs.OnUpdatedChangeInfoType,
   tab: Tabs.Tab,
 ) {
-  console.log('onUpdatedHandler', tabId, changeInfo, tab);
+  
+  console.log('onUpdatedHandler',tab);
+  addTabToLocalStore(tab);
 }
-
-/**
- * Whenever a active tab is changed it records a heartbeat with that tab url.
- */
-browser.tabs.onActivated.addListener(function (activeInfo) {
-  browser.tabs.get(activeInfo.tabId).then(function (tab) {
-    console.log('recording a heartbeat - active tab changed');
-
-    // record heartbeat here
-  });
-});
-
-/**
- * Whenever a active window is changed it records a heartbeat with the active tab url.
- */
