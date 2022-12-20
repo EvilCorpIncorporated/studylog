@@ -1,3 +1,3 @@
 export const alarmNames = {
-    heartbeatAlarm: 'heartbeatAlarm',
-}
+  heartbeatAlarm: 'heartbeatAlarm',
+};

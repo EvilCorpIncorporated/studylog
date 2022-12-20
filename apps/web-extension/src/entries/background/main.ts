@@ -13,12 +13,9 @@ function setupEventHandlers() {
   setupAlarms();
 }
 
-
 function init() {
   console.log('init');
   setupEventHandlers();
 }
-
-
 
 init();

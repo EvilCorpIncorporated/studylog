@@ -1,8 +1,8 @@
 // define events here
 
 import browser from 'webextension-polyfill';
-import {alarmNames} from './constants/alarmNames';
-import type { Tabs } from 'webextension-polyfill';// onTabActivatedHandler, onTabUpdatedHandler, setupEventHandlers
+import type { Tabs } from 'webextension-polyfill'; // onTabActivatedHandler, onTabUpdatedHandler, setupEventHandlers
+import { alarmNames } from './constants/alarmNames';
 
 // onTabActivatedHandler, onTabUpdatedHandler, setupEventHandlers
 export function setupEventHandlers() {
@@ -42,8 +42,7 @@ browser.tabs.onActivated.addListener(function (activeInfo) {
   browser.tabs.get(activeInfo.tabId).then(function (tab) {
     console.log('recording a heartbeat - active tab changed');
 
-  // record heartbeat here
-
+    // record heartbeat here
   });
 });
 

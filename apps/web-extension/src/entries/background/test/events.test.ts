@@ -1,10 +1,14 @@
 // jest test example
 
 import { MockzillaDeep } from 'mockzilla';
-import { mockEvent, MockzillaEventOf } from 'mockzilla-webextension';
+import type { MockzillaEventOf } from 'mockzilla-webextension';
+import { mockEvent } from 'mockzilla-webextension';
 import { Events, Tabs } from 'webextension-polyfill';
-import {onTabActivatedHandler, onTabUpdatedHandler, setupEventHandlers} from '../events'
-
+import {
+  onTabActivatedHandler,
+  onTabUpdatedHandler,
+  setupEventHandlers,
+} from '../events';
 
 describe('MyEventHandler', () => {
   let onRemoved: MockzillaEventOf<typeof mockBrowser.tabs.onRemoved>;
