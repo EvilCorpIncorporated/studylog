@@ -4,8 +4,7 @@ import { setupTabEventHandlers } from './events';
 import { setStorageDefaults } from './storage';
 
 browser.runtime.onInstalled.addListener(() => {
-  // eslint-disable-next-line no-console
-  console.log('Extension installed');
+  console.debug('Extension installed');
 });
 
 function setupEventHandlers() {
@@ -15,7 +14,7 @@ function setupEventHandlers() {
 }
 
 function init() {
-  console.log('init');
+  console.debug('init');
   setStorageDefaults();
   setupEventHandlers();
 }

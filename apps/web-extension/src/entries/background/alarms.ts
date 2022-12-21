@@ -5,7 +5,7 @@ import { sendEvents } from './api';
 // Create a new alarm for heartbeats.
 const alarmHandlers = {
   [alarmNames.heartbeatAlarm]: async () => {
-    console.log('recording a heartbeat - alarm triggered');
+    console.debug('recording a heartbeat - alarm triggered');
     // send heartbeat to server
     await sendEvents();
   },

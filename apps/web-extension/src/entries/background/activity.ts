@@ -1,14 +1,10 @@
 import browser from 'webextension-polyfill';
-import type { Tabs } from 'webextension-polyfill';
-// import { tabs, TabWithTimestamp, FilteredTab } from './../logic/tabs';
 import { getStorage, setStorage } from './storage';
-
-// import type { FilteredTab, TabWithTimestamp } from '~/logic';
 
 export async function onUpdatedHandler( // gets called when a tab is updated, creates tab event, and updates the 'tabs' array, sets storage
   _tabId: number,
-  changeInfo: Tabs.OnUpdatedChangeInfoType,
-  _tab: Tabs.Tab,
+  changeInfo: browser.Tabs.OnUpdatedChangeInfoType,
+  _tab: browser.Tabs.Tab,
 ) {
   if (changeInfo.status === 'complete') {
     let tabs = await getStorage('tabs');
@@ -20,7 +16,7 @@ export async function onUpdatedHandler( // gets called when a tab is updated, cr
     tabs = createActivityEvent({ tabs, activeTab });
     await setStorage({ tabs });
     // sending activity data
-    console.log('sending activity data', tabs);
+    console.debug('sending activity data', tabs);
     // sendActivityData(tabs);
   } else if (changeInfo.status === 'loading') {
     // loading
@@ -36,8 +32,8 @@ function createActivityEvent({
   activeTab,
   tabs,
 }: {
-  activeTab: Tabs.Tab;
-  tabs: TabWithTimestamp[];
+  activeTab: browser.Tabs.Tab;
+  tabs: browser.Tabs.Tab[];
 }) {
   return [...tabs, { ...activeTab, enterTime: getCurrentTime() }];
 }
@@ -46,7 +42,7 @@ function getCurrentTime() {
   return Date.now();
 }
 
-function closeActivityEvent(tabs: TabWithTimestamp[]) {
+function closeActivityEvent(tabs: browser.Tabs.Tab[]) {
   if (tabs.length > 0) {
     tabs[tabs.length - 1].exitTime = getCurrentTime();
     return tabs;
@@ -58,7 +54,7 @@ function closeActivityEvent(tabs: TabWithTimestamp[]) {
 export async function onActivatedHandler({
   // gets called when a tab is activated, creates tab event, and updates the 'tabs' array, sets storage
   tabId,
-}: Tabs.OnActivatedActiveInfoType) {
+}: browser.Tabs.OnActivatedActiveInfoType) {
   let tabs = await getStorage('tabs');
   const activeTab = await browser.tabs.get(tabId);
   tabs = closeActivityEvent(tabs);
