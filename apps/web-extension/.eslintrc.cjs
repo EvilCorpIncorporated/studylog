@@ -11,6 +11,7 @@ module.exports = defineConfig({
       path.join(__dirname, 'tsconfig.node.json'),
     ],
   },
+  rules: { 'no-console': ['error', { allow: ['assert', 'trace', 'debug'] }] },
   overrides: [
     {
       files: '**/*.cjs',
