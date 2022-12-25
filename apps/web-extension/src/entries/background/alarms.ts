@@ -7,6 +7,10 @@ function secondsToMiliseconds(seconds: number) {
   return seconds * 1000;
 }
 
+async function onAlarmIdleHandler() {
+  recordIdleEvent();
+}
+
 const alarmNames = {
   heartbeatAlarm: 'heartbeatAlarm',
   idleAlarm: 'idleAlarm',
@@ -25,6 +29,7 @@ export function setupAlarms() {
 
 
   browser.alarms.onAlarm.addListener(async (alarm) => {
+    console.log('alarm', alarm);
       alarmHandlers[alarm.name]();
   });
 
@@ -34,8 +39,6 @@ export function setupAlarms() {
 function recordIdleEvent() {
   // add an idle event
   browser.idle.queryState(idleThreshHoldSeconds).then((state) => {
-    console.log("The user has been inactive for at least " + idleThreshHoldSeconds + " seconds");
-    console.log("The user has been active for at least " + idleThreshHoldSeconds + " seconds");
     const endTime = new Date().getTime();
     const startTime = endTime - secondsToMiliseconds(idleThreshHoldSeconds);
 
@@ -48,9 +51,6 @@ function recordIdleEvent() {
     // add event to local storage
     addIdleEventToLocalStore(idleEvent);
   });
-}
-async function onAlarmIdleHandler() {
-    recordIdleEvent();
 }
 
 async function onAlarmHeartbeatHandler() {

@@ -21,9 +21,12 @@ export async function onTabActivatedHandler(
     let queryOptions = { active: true};
     // `tab` will either be a `tabs.Tab` instance or `undefined`.
     let [tab] = await browser.tabs.query(queryOptions);
-    console.log('onActivatedHandler',tab);
-  // add tab to localStorage
-  addTabToLocalStore(tab);
+
+    if (tab.status == 'complete') {
+      console.log('onActivatedHandler',tab);
+      // add tab to localStorage
+      addTabToLocalStore(tab);
+    }
 }
 
 export function onTabUpdatedHandler(
@@ -31,6 +34,8 @@ export function onTabUpdatedHandler(
   changeInfo: Tabs.OnUpdatedChangeInfoType,
   tab: Tabs.Tab,
 ) {
-  console.log('onUpdatedHandler',tab);
-  addTabToLocalStore(tab);
+  if (changeInfo.status == 'complete' && tab.active) {
+    console.log('onUpdatedHandler',tab);
+    addTabToLocalStore(tab);
+  }
 }
