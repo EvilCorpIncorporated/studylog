@@ -16,9 +16,9 @@ importers:
 
   apps/web:
     specifiers:
-      '@edgedb/generate': ^0.0.7
       '@nuxt/eslint-config': ^0.1.1
       '@nuxt/test-utils': ^3.0.0
+      '@studylog/edgedb': workspace:*
       '@studylog/eslint-config': workspace:*
       '@studylog/trpc': workspace:*
       '@trpc/client': ^10.5.0
@@ -32,13 +32,13 @@ importers:
       trpc-nuxt: ^0.4.3
       vitest: ^0.25.8
     dependencies:
+      '@studylog/edgedb': link:../../packages/edgedb
       '@studylog/trpc': link:../../packages/trpc
       '@trpc/client': 10.5.0
       edgedb: 1.0.2
       nuxt-edgedb: 1.0.0_edgedb@1.0.2
       trpc-nuxt: 0.4.3_@trpc+client@10.5.0
     devDependencies:
-      '@edgedb/generate': 0.0.7_edgedb@1.0.2
       '@nuxt/eslint-config': 0.1.1_eslint@8.29.0
       '@nuxt/test-utils': 3.0.0
       '@studylog/eslint-config': link:../../packages/eslint-config
@@ -86,6 +86,12 @@ importers:
       vue-tsc: 0.40.13_typescript@4.9.4
       web-ext: 7.4.0
 
+  packages/edgedb:
+    specifiers:
+      '@edgedb/generate': ^0.0.7
+    devDependencies:
+      '@edgedb/generate': 0.0.7
+
   packages/eslint-config:
     specifiers:
       '@studylog/tsconfig': workspace:*
@@ -102,20 +108,24 @@ importers:
   packages/trpc:
     specifiers:
       '@antfu/eslint-config': ^0.34.0
+      '@studylog/edgedb': workspace:*
       '@studylog/eslint-config': workspace:*
       '@studylog/tsconfig': workspace:*
       '@trpc/server': ^10.5.0
+      edgedb: ^1.0.2
       eslint: ^8.29.0
       eslint-define-config: ^1.12.0
       unbuild: ^1.0.2
       zod: ^3.20.2
     dependencies:
+      '@studylog/edgedb': link:../edgedb
       '@trpc/server': 10.5.0
       zod: 3.20.2
     devDependencies:
       '@antfu/eslint-config': 0.34.0_eslint@8.29.0
       '@studylog/eslint-config': link:../eslint-config
       '@studylog/tsconfig': link:../tsconfig
+      edgedb: 1.0.2
       eslint: 8.29.0
       eslint-define-config: 1.12.0
       unbuild: 1.0.2
@@ -1447,7 +1457,7 @@ packages:
       - supports-color
     dev: true
 
-  /@edgedb/generate/0.0.7_edgedb@1.0.2:
+  /@edgedb/generate/0.0.7:
     resolution: {integrity: sha512-qUzvBQjj5u9gTyifkSVy6HChKcBVGh67QFSAdcy/K5GizqemyhtGjO/E9AI95gow7RHZIVvSIm55z899FnuxEA==}
     engines: {node: '>= 12.0.0'}
     hasBin: true
@@ -1455,7 +1465,6 @@ packages:
       edgedb: ^1.0.0-alpha.0
     dependencies:
       chokidar: 3.5.3
-      edgedb: 1.0.2
     dev: true
 
   /@esbuild/android-arm/0.15.18:

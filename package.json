@@ -8,6 +8,8 @@
     "lint": "turbo run lint",
     "test": "turbo run test",
     "test:watch": "turbo run test:watch",
+    "db:generate": "turbo run db:generate",
+    "edgedb": "pnpm m --filter=edgedb exec edgedb",
     "format": "prettier --write \"**/*.{{c,m,}js,{c,m,}ts,md,vue,json,yaml,yml}\""
   },
   "engines": {

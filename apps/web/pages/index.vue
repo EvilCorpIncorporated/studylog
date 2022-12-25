@@ -4,30 +4,39 @@ const { $client } = useNuxtApp();
 const idRaw = $(useRouteQuery('id', '1'));
 const id = $computed(() => Number(idRaw));
 
-const { data: name } = await useAsyncData(
-  'name',
-  async () => {
-    const { name } = await $client.getUser.query({ id });
-    return name;
-  },
-  { watch: [$$(id)] },
-);
+// const { data: name } = await useAsyncData(
+//   'name',
+//   async () => {
+//     const { name } = await $client.getUser.query({ id });
+//     return name;
+//   },
+//   { watch: [$$(id)] },
+// );
+
+async function addEvents() {
+  const events = await $client.addEvents.mutate({
+    events: [{ enter_time: new Date(), exit_time: new Date('2023-01-25') }],
+    user_id: 'foobar',
+  });
+  console.log(events);
+}
 </script>
 
 <template>
   <main>
-    <label>
+    <button @click="addEvents()">Add events</button>
+    <!-- <label>
       User ID:
       <input v-model="idRaw" type="number" />
     </label>
     <p v-if="name != null">
       Hello {{ name.first }}
-      <span v-if="name.middle != null">{{ name.middle }}</span>
+      <span v-if="name.middle != null"> {{ name.middle }} </span>
       {{ name.last }}!
     </p>
-    <p v-else>No user exists with ID {{ id }}.</p>
+    <p v-else> No user exists with ID {{ id }}. </p>
     <NuxtLink to="/register">
-      <button>Register</button>
-    </NuxtLink>
+      <button> Register </button>
+    </NuxtLink> -->
   </main>
 </template>

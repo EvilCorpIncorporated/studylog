@@ -11,7 +11,6 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
-    "@edgedb/generate": "^0.0.7",
     "@nuxt/eslint-config": "^0.1.1",
     "@nuxt/test-utils": "^3.0.0",
     "@studylog/eslint-config": "workspace:*",
@@ -23,6 +22,7 @@
     "vitest": "^0.25.8"
   },
   "dependencies": {
+    "@studylog/edgedb": "workspace:*",
     "@studylog/trpc": "workspace:*",
     "@trpc/client": "^10.5.0",
     "edgedb": "^1.0.2",

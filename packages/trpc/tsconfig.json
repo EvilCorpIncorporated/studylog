@@ -1,6 +1,7 @@
 {
   "extends": "@studylog/tsconfig/node-esm.json",
   "compilerOptions": {
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "noPropertyAccessFromIndexSignature": false
   }
 }

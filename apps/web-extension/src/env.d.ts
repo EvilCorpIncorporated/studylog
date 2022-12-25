@@ -2,11 +2,11 @@
 /// <reference types="@samrum/vite-plugin-web-extension/client" />
 
 interface ImportMetaEnv {
-  readonly VITE_TRPC_URL: string
+  readonly VITE_TRPC_URL: string;
 }
 
 interface ImportMeta {
-  readonly env: ImportMetaEnv
+  readonly env: ImportMetaEnv;
 }
 
 declare module '*.vue' {
