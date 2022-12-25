@@ -28,6 +28,7 @@ const sharedManifest = {
     'activeTab',
     'storage',
     'tabs',
+    'idle'
   ],
 };
 

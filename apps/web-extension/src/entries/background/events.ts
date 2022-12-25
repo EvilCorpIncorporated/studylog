@@ -2,7 +2,6 @@
 
 import browser from 'webextension-polyfill';
 import type { Tabs } from 'webextension-polyfill';
-import {alarmNames} from './constants/alarmNames';
 import {addTabToLocalStore} from './storage';
 
 
@@ -32,12 +31,6 @@ export function onTabUpdatedHandler(
   changeInfo: Tabs.OnUpdatedChangeInfoType,
   tab: Tabs.Tab,
 ) {
-  
   console.log('onUpdatedHandler',tab);
   addTabToLocalStore(tab);
 }
-
-
-
-
-
