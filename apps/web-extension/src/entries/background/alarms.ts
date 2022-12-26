@@ -47,7 +47,7 @@ function recordIdleEvent() {
       startTime: startTime,
       endTime: endTime,
     }
-
+    console.log('idleEvent', idleEvent);
     // add event to local storage
     addIdleEventToLocalStore(idleEvent);
   });
@@ -55,8 +55,8 @@ function recordIdleEvent() {
 
 async function onAlarmHeartbeatHandler() {
   // add a heartbeat event
-  console.log('heartbeat');
-  const idleEvents = await browser.idle.queryState(idleThreshHoldSeconds);
-  console.log(idleEvents);
+  console.log('heartbeat alarm');
+  // const idleEvents = await browser.idle.queryState(idleThreshHoldSeconds);
+  // console.log(idleEvents);
   // sendEvents();
 }
