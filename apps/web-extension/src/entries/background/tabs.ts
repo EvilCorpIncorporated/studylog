@@ -16,7 +16,7 @@ export function filterTabs(tabs: Tabs.Tab[]) {
   return filterTabsNotAllowedWebsites(tabs)
 }
 
-function isAllowedWebsite(url?: string) {
+export function isAllowedWebsite(url?: string) {
   if (url && url in allowedWebsites) {
     return true
   }

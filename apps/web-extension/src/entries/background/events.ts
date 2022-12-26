@@ -39,3 +39,10 @@ export function onTabUpdatedHandler(
     addTabToLocalStore(tab);
   }
 }
+
+
+export function processEvents(tabEvents: any[], idleEvents: any[]) {
+  // process events
+  console.log('tabEvents', tabEvents);
+  console.log('idleEvents', idleEvents);
+}
