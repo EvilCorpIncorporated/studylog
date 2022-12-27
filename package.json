@@ -8,7 +8,7 @@
     "lint": "turbo run lint",
     "test": "turbo run test",
     "test:watch": "turbo run test:watch",
-    "format": "prettier --cache --write \"**/*.{{c,m,}js{,x},{c,m,}ts{,x},md,vue,json,yaml,yml}\"",
+    "format": "prettier --cache --write \"**/*.{{c,m,}{j,t}s{,x},md,vue,json,y{a,}ml}\"",
     "prepare": "husky install"
   },
   "engines": {
