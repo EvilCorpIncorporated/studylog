@@ -1,3 +1,4 @@
+import { TabEvent } from './tabs';
 import type { Tabs } from 'webextension-polyfill';
 import browser from 'webextension-polyfill';
 
@@ -12,7 +13,7 @@ export async function getIdleEventsFromLocalStore(): Promise<IdleEvent[]> {
     return idleEvents;
 }
 
-export async function addTabToLocalStore(tab: Tabs.Tab): Promise<void> {
+export async function addTabToLocalStore(tab: TabEvent): Promise<void> { // TODO: change name - input argument is not a tab
     let tabs = await getStorage('tabs');
     tabs.push(tab);
     await setStorage({ tabs });

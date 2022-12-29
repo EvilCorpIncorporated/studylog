@@ -1,3 +1,4 @@
+import { TabEvent } from './tabs';
 // define events here
 
 import browser from 'webextension-polyfill';
@@ -18,14 +19,17 @@ export async function onTabActivatedHandler(
   activeInfo: Tabs.OnActivatedActiveInfoType,
 ) {
   // get the active tab
-    let queryOptions = { active: true};
-    // `tab` will either be a `tabs.Tab` instance or `undefined`.
+    const queryOptions = { active: true};
     let [tab] = await browser.tabs.query(queryOptions);
 
     if (tab.status == 'complete') {
-      console.log('onActivatedHandler',tab);
       // add tab to localStorage
-      addTabToLocalStore(tab);
+      const tabEvent:TabEvent = {
+        tab: tab,
+        lastAccessed: new Date().getTime(),
+      }
+      console.log('onTabActivated TabEvent',tabEvent);
+      addTabToLocalStore(tabEvent);
     }
 }
 
@@ -35,14 +39,13 @@ export function onTabUpdatedHandler(
   tab: Tabs.Tab,
 ) {
   if (changeInfo.status == 'complete' && tab.active) {
-    console.log('onUpdatedHandler',tab);
-    addTabToLocalStore(tab);
+    const tabEvent:TabEvent = {
+      tab: tab,
+      lastAccessed: new Date().getTime(),
+    }
+    console.log('onUpdatedHandler TabEvent',tabEvent);
+
+    addTabToLocalStore(tabEvent);
   }
 }
 
-
-export function processEvents(tabEvents: any[], idleEvents: any[]) {
-  // process events
-  console.log('tabEvents', tabEvents);
-  console.log('idleEvents', idleEvents);
-}

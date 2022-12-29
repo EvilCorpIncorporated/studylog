@@ -1,4 +1,6 @@
 import browser from 'webextension-polyfill';
+import { sendEvents } from './api';
+import { processEvents } from './tabs';
 import { addIdleEventToLocalStore, getIdleEventsFromLocalStore, getTabsFromLocalStore, IdleEvent } from './storage';
 import { isAllowedWebsite } from './tabs';
 
@@ -39,7 +41,7 @@ export function setupAlarms() {
 
 function recordIdleEvent() {
   // add an idle event
-  browser.idle.queryState(idleThreshHoldSeconds).then((state: any) => {
+  browser.idle.queryState(idleThreshHoldSeconds).then((state: 'idle' | 'active' | 'locked') => {
     const endTime = new Date().getTime();
     const startTime = endTime - convertSecondsToMilliseconds(idleThreshHoldSeconds);
 
@@ -62,9 +64,9 @@ async function onAlarmHeartbeat() {
   sendEvents(processedEvents)
 }
 
-async function getEvents(): Promise<{
+async function getEvents(): Promise<{ // TODO: move - function doesn't belong here
   tabEvents: any[],
-  idleEvents: any[],
+  idleEvents: IdleEvent[],
 }> { 
   // get events from local storage
   const tabEvents = await getTabsFromLocalStore();
@@ -72,42 +74,6 @@ async function getEvents(): Promise<{
   return {tabEvents, idleEvents}
 }
 
-function getActiveIdleEvents(idleEvents: any[]) {
-  return idleEvents.filter((idleEvent: any) => {
-    return idleEvent.state === 'active';
-  });
-}
 
-function getTabEventsInIdleEventTimeRange(tabEvents: any[], idleEvent: any) {
-  return tabEvents.filter((tabEvent: any) => {
-    return tabEvent.lastAccessed >= idleEvent.startTime && tabEvent.lastAccessed <= idleEvent.endTime;
-  });
-}
 
-function getAllowedWebsitesTabEvents(tabEvents: any[]) {
-  return tabEvents.filter((tabEvent: any) => {
-    return isAllowedWebsite(tabEvent.url);
-  })
-};
-function processEvents(tabEvents: any[], idleEvents: any[]) {
-  // process events
-  console.log('tabEvents', tabEvents);
-  console.log('idleEvents', idleEvents);
-  let validTabEvents = [];
-
-  const activeIdleEvents = getActiveIdleEvents(idleEvents);
-
-  activeIdleEvents.forEach((idleEvent: IdleEvent) => {
-    // find tabEvents in the idleEvent time range
-    const activeTabEvents = getTabEventsInIdleEventTimeRange(tabEvents, idleEvent);
-    const allowedWebsitesTabEvents = getAllowedWebsitesTabEvents(activeTabEvents);
-    validTabEvents.push(allowedWebsitesTabEvents);
-  });
-
-  return validTabEvents;
-}
-
-function sendEvents(events: any[]) { // move this to the api file
-  console.log('should send events to the server')
-}
 
