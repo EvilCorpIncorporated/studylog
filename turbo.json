@@ -5,8 +5,8 @@
     "**/.env{,.*}",
     "**/!.env.example",
     "**/tsconfig{,.*}.json",
-    "**/vite.config.ts",
-    "**/jest.config.c?js",
+    "**/vite{,st}.config.ts",
+    "**/jest.config.js",
     "**/.eslintrc.c?js"
   ],
   "pipeline": {

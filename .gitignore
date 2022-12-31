@@ -150,3 +150,5 @@ dist
 # Stray lockfiles from other package managers
 package-lock.json
 yarn.lock
+apps/web-extension/auto-imports.d.ts
+apps/web-extension/components.d.ts

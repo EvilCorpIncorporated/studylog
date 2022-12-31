@@ -6,3 +6,6 @@ pnpm-lock.yaml
 dist
 packages/edgedb/dbschema/edgeql-js
 packages/edgedb/dbschema/interfaces
+**/coverage
+apps/**/auto-imports.d.ts
+apps/**/components.d.ts

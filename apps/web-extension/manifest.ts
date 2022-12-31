@@ -1,6 +1,7 @@
-import pkg from '../package.json';
+import type { Manifest } from 'webextension-polyfill';
+import pkg from './package.json';
 
-const sharedManifest = {
+const sharedManifest: Partial<Manifest.WebExtensionManifest> = {
   content_scripts: [
     {
       js: ['src/entries/contentScript/primary/main.ts'],
@@ -23,7 +24,13 @@ const sharedManifest = {
     page: 'src/entries/options/index.html',
     open_in_tab: true,
   },
-  permissions: [],
+  permissions: [
+    'alarms',
+    'activeTab',
+    'storage',
+    'tabs',
+    'idle'
+  ],
 };
 
 const browserAction = {
@@ -36,7 +43,7 @@ const browserAction = {
   default_popup: 'src/entries/popup/index.html',
 };
 
-const ManifestV2 = {
+const manifestV2: Partial<Manifest.WebExtensionManifest> = {
   ...sharedManifest,
   background: {
     scripts: ['src/entries/background/script.ts'],
@@ -44,13 +51,13 @@ const ManifestV2 = {
   },
   browser_action: browserAction,
   options_ui: {
-    ...sharedManifest.options_ui,
+    ...sharedManifest.options_ui!,
     chrome_style: false,
   },
-  permissions: [...sharedManifest.permissions, '*://*/*'],
+  permissions: [...sharedManifest.permissions!, '*://*/*'],
 };
 
-const ManifestV3 = {
+const manifestV3: Partial<Manifest.WebExtensionManifest> = {
   ...sharedManifest,
   action: browserAction,
   background: {
@@ -61,8 +68,8 @@ const ManifestV3 = {
 
 export function getManifest(
   manifestVersion: number,
-): chrome.runtime.ManifestV2 | chrome.runtime.ManifestV3 {
-  const manifest = {
+): Manifest.WebExtensionManifest {
+  const manifest: Partial<Manifest.WebExtensionManifest> = {
     author: pkg.author,
     description: pkg.description,
     name: pkg.displayName ?? pkg.name,
@@ -71,16 +78,16 @@ export function getManifest(
 
   if (manifestVersion === 2) {
     return {
-      ...manifest,
-      ...ManifestV2,
+      ...(manifest as Manifest.WebExtensionManifest),
+      ...manifestV2,
       manifest_version: manifestVersion,
     };
   }
 
   if (manifestVersion === 3) {
     return {
-      ...manifest,
-      ...ManifestV3,
+      ...(manifest as Manifest.WebExtensionManifest),
+      ...manifestV3,
       manifest_version: manifestVersion,
     };
   }
