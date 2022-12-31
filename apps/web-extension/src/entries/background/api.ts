@@ -1,9 +1,4 @@
-// send heartbeat to server
-
-import { Tabs } from 'webextension-polyfill';
-import {getIdleEventsFromLocalStore, getTabsFromLocalStore, IdleEvent} from './storage';
-import { filterTabs } from './tabs';
-import client from '../../trpc';
+import {getIdleEventsFromLocalStore, getTabsFromLocalStore} from './storage';
 
 export async function prepareAndSendEvents() {
     console.log(`should send these events to the server: ${getTabsFromLocalStore()}`);

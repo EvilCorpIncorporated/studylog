@@ -32,7 +32,6 @@ export function setupAlarms() {
     console.log('alarm', alarm);
       alarmHandlers[alarm.name]();
   });
-
 }
 
 
