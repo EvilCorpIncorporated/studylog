@@ -1,6 +1,8 @@
-import {getIdleEventsFromLocalStore, getTabsFromLocalStore} from './storage';
+import type { TabEvent } from './tabs';
+// send heartbeat to server
 
-export async function prepareAndSendEvents() {
-    console.log(`should send these events to the server: ${getTabsFromLocalStore()}`);
-    console.log(`idle events: ${getIdleEventsFromLocalStore()}`);
-  }
+
+export function sendEvents(events: TabEvent[]) {
+  // move this to the api file
+  console.log('should send events to the server');
+}
