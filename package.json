@@ -8,6 +8,8 @@
     "lint": "turbo run lint",
     "test": "turbo run test",
     "test:watch": "turbo run test:watch",
+    "db:generate": "turbo run db:generate",
+    "edgedb": "pnpm m --filter=edgedb exec edgedb",
     "format": "prettier --cache --write \"**/*.{{c,m,}{j,t}s{,x},md,vue,json,y{a,}ml}\"",
     "prepare": "husky install"
   },

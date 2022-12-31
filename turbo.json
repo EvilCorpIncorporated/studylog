@@ -11,7 +11,7 @@
   ],
   "pipeline": {
     "dev": {
-      "dependsOn": ["^db:generate"],
+      "dependsOn": ["^db:generate", "@studylog/trpc#build"],
       "cache": false
     },
     "build": {
@@ -30,9 +30,6 @@
       "outputs": []
     },
     "db:generate": {
-      "cache": false
-    },
-    "db:push": {
       "cache": false
     }
   }
