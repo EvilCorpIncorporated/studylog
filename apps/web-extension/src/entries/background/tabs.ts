@@ -2,7 +2,16 @@ import { Interface } from 'readline';
 import {Tabs} from 'webextension-polyfill';
 import { IdleEvent } from './storage';
 
+const allowedWebsites: string[] = [
+  // learning websites
+  "pluralsight.com",
+  "github.com",
+  "stackoverflow.com",
+  "medium.com",
+  "dev.to",
+  "developer.mozilla.org",
 
+]
 
 
 export function filterTabs(tabs: Tabs.Tab[]) {
