@@ -40,7 +40,7 @@
   "scripts": {
     "build": "unbuild",
     "bugged-dev-todo-fix": "unbuild --stub",
-    "lint": "eslint --fix ."
+    "lint": "eslint . --cache --fix"
   },
   "peerDependencies": {
     "@trpc/client": "^10.5.0"
@@ -51,9 +51,7 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.34.0",
-    "@studylog/eslint-config": "workspace:*",
     "@studylog/tsconfig": "workspace:*",
-    "eslint": "^8.29.0",
     "eslint-define-config": "^1.12.0",
     "unbuild": "^1.0.2"
   }
