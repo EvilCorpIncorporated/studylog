@@ -24,7 +24,13 @@ const sharedManifest: Partial<Manifest.WebExtensionManifest> = {
     page: 'src/entries/options/index.html',
     open_in_tab: true,
   },
-  permissions: ['alarms', 'activeTab', 'storage', 'tabs'],
+  permissions: [
+    'alarms',
+    'activeTab',
+    'storage',
+    'tabs',
+    'idle'
+  ],
 };
 
 const browserAction = {

@@ -1,18 +1,6 @@
-// send heartbeat to server
-import { getTabsFromLocalStore } from './storage';
-import { filterTabs } from './tabs';
+import {getIdleEventsFromLocalStore, getTabsFromLocalStore} from './storage';
 
-export async function sendEvents() {
-  console.debug(
-    'should send these events to the server:',
-    getTabsFromLocalStore(),
-  );
-
-  // get tabvs from local storage
-  // filter tabs
-  const filteredTabs = filterTabs(await getTabsFromLocalStore());
-  console.debug('filtered tabs:', filteredTabs);
-
-  // send tabs to server
-  throw new Error('Function not implemented.');
-}
+export async function prepareAndSendEvents() {
+    console.log(`should send these events to the server: ${getTabsFromLocalStore()}`);
+    console.log(`idle events: ${getIdleEventsFromLocalStore()}`);
+  }

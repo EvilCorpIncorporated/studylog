@@ -1,22 +1,61 @@
 import browser from 'webextension-polyfill';
-import { alarmNames } from './constants/alarmNames';
-import { sendEvents } from './api';
+import { addIdleEventToLocalStore, IdleEvent } from './storage';
 
-// Create a new alarm for heartbeats.
+  // Create a new alarm for heartbeat
+const idleThreshHoldSeconds = 60;
+function secondsToMiliseconds(seconds: number) {
+  return seconds * 1000;
+}
+
+async function onAlarmIdleHandler() {
+  recordIdleEvent();
+}
+
+const alarmNames = {
+  heartbeatAlarm: 'heartbeatAlarm',
+  idleAlarm: 'idleAlarm',
+}
+
 const alarmHandlers = {
-  [alarmNames.heartbeatAlarm]: async () => {
-    console.debug('recording a heartbeat - alarm triggered');
-    // send heartbeat to server
-    await sendEvents();
-  },
-};
+  [alarmNames.idleAlarm]: onAlarmIdleHandler,
+  [alarmNames.heartbeatAlarm]: onAlarmHeartbeatHandler,
+
+}
 
 export function setupAlarms() {
   // setup alarm event handlers
-  browser.alarms.create(alarmNames.heartbeatAlarm, { periodInMinutes: 1 });
+  browser.alarms.create(alarmNames.heartbeatAlarm, { periodInMinutes: 2});
+  browser.alarms.create(alarmNames.idleAlarm, { periodInMinutes: 1});
 
-  browser.alarms.onAlarm.addListener(async alarm => {
-    // TODO: remove this check - this is a violation of the single responsibility principle, and should be handled in a separate function
-    alarmHandlers[alarm.name]();
+
+  browser.alarms.onAlarm.addListener(async (alarm) => {
+    console.log('alarm', alarm);
+      alarmHandlers[alarm.name]();
   });
+}
+
+
+function recordIdleEvent() {
+  // add an idle event
+  browser.idle.queryState(idleThreshHoldSeconds).then((state) => {
+    const endTime = new Date().getTime();
+    const startTime = endTime - secondsToMiliseconds(idleThreshHoldSeconds);
+
+    const idleEvent:IdleEvent = {
+      state: state,
+      startTime: startTime,
+      endTime: endTime,
+    }
+    console.log('idleEvent', idleEvent);
+    // add event to local storage
+    addIdleEventToLocalStore(idleEvent);
+  });
+}
+
+async function onAlarmHeartbeatHandler() {
+  // add a heartbeat event
+  console.log('heartbeat alarm');
+  // const idleEvents = await browser.idle.queryState(idleThreshHoldSeconds);
+  // console.log(idleEvents);
+  // sendEvents();
 }
