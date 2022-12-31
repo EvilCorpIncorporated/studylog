@@ -4,3 +4,6 @@ pnpm-lock.yaml
 .turbo
 .output
 dist
+**/coverage
+apps/**/auto-imports.d.ts
+apps/**/components.d.ts
