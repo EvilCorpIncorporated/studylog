@@ -19,7 +19,10 @@ async function _mutation(edgedb: Client, req: any) {
       return e.insert(e.Event, {
         // TODO: remove '!', assure that the enter_time is not null
         enter_time: e.cast(e.datetime, event.enter_time!),
-        user: e.insert(e.User, { user_id }),
+        user: e.insert(e.User, { user_id }).unlessConflict(user => ({
+          on: user.user_id,
+          else: user,
+        })),
       });
     });
   });

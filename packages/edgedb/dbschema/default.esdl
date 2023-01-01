@@ -6,7 +6,9 @@ module default {
   }
 
   type User {
-    required property user_id -> str;
+    required property user_id -> str {
+      constraint exclusive
+    }
   }
 
   type Tab {
@@ -15,5 +17,4 @@ module default {
     required property title -> str; # The title of the tab.
   }
 
-  # <TabStatus>'loading' = TabStatus.loading
 }
