@@ -3,13 +3,12 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "build": "turbo run build",
-    "dev": "turbo run dev",
-    "lint": "turbo run lint",
-    "test": "turbo run test",
-    "test:watch": "turbo run test:watch",
-    "db:generate": "turbo run db:generate",
-    "edgedb": "pnpm m --filter=edgedb exec edgedb",
+    "build": "dotenv -c -- turbo run build",
+    "dev": "dotenv -c -- turbo run dev",
+    "lint": "dotenv -c -- turbo run lint",
+    "test": "dotenv -c -- turbo run test",
+    "test:watch": "dotenv -c -- turbo run test:watch",
+    "db:generate": "dotenv -c -- turbo run db:generate",
     "format": "prettier --cache --write \"**/*.{{c,m,}{j,t}s{,x},md,vue,json,y{a,}ml}\"",
     "prepare": "husky install"
   },
@@ -19,6 +18,7 @@
   "devDependencies": {
     "@studylog/eslint-config": "workspace:*",
     "@volar-plugins/prettier": "^1.1.5",
+    "dotenv-cli": "^6.0.0",
     "eslint": "^8.30.0",
     "eslint-define-config": "^1.12.0",
     "husky": "^8.0.2",

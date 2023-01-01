@@ -5,17 +5,17 @@
   "description": "",
   "exports": {
     ".": {
-      "types": "./dbschema/edgeql-js/index.d.ts",
-      "import": "./dbschema/edgeql-js/index.mjs"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs"
     }
   },
-  "module": "./dbschema/edgeql-js/index.mjs",
-  "types": "./dbschema/edgeql-js/index.d.ts",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "files": [
     "dbschema/edgeql-js"
   ],
   "scripts": {
-    "db:generate": "generate edgeql-js --target=esm"
+    "db:generate": "generate edgeql-js --target=esm --out=dist"
   },
   "devDependencies": {
     "@edgedb/generate": "^0.0.7"
