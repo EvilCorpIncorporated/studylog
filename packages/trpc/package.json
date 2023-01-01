@@ -40,7 +40,7 @@
   "scripts": {
     "build": "unbuild",
     "bugged-dev-todo-fix": "unbuild --stub",
-    "lint": "eslint . --cache --fix"
+    "lint": "eslint . --fix"
   },
   "peerDependencies": {
     "@trpc/client": "^10.5.0"
