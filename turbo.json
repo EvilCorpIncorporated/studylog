@@ -3,7 +3,7 @@
   "globalDependencies": [
     "packages/tsconfig/*.json",
     "**/.env{,.*}",
-    "**/!.env.example",
+    "**/!.env{,.*}.example",
     "**/tsconfig{,.*}.json",
     "**/vite{,st}.config.ts",
     "**/jest.config.js",
