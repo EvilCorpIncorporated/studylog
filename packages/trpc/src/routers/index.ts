@@ -18,11 +18,19 @@ const zod_input = z.object({
 });
 
 async function _mutation(edgedb: Client, req: any) {
+  // TODO: change the name of this function - not informative
+  // TODO: break this function down, this function is too clutered.
   const { events, user_id } = req.input;
 
   const query = e.params({ events: e.json }, $ => {
     return e.for(e.json_array_unpack($.events), event => {
+      // const object_unpack = e.json_object_unpack(event)
       return e.insert(e.Event, {
+        tab: e.insert(e.Tab, {
+          active: true,
+          url: 'test',
+          title: 'test',
+        }),
         // TODO: remove '!', assure that the enter_time is not null
         enter_time: e.cast(e.datetime, event.enter_time!),
         user: e.insert(e.User, { user_id }).unlessConflict(user => ({
