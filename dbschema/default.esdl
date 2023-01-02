@@ -1,6 +1,6 @@
 module default {
   type Event {
-    link tab -> Tab;
+    required link tab -> Tab;
     required property enter_time -> datetime;
     required link user -> User;
   }
