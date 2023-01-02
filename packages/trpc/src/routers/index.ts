@@ -27,9 +27,10 @@ async function _mutation(edgedb: Client, req: any) {
       // const object_unpack = e.json_object_unpack(event)
       return e.insert(e.Event, {
         tab: e.insert(e.Tab, {
-          active: true,
-          url: 'test',
-          title: 'test',
+          // TODO: remove '!' assure that the properties are not null
+          active: e.cast(e.bool, event.tab!.active!),
+          url: e.cast(e.str, event.tab!.url!),
+          title: e.cast(e.str, event.tab!.title!),
         }),
         // TODO: remove '!', assure that the enter_time is not null
         enter_time: e.cast(e.datetime, event.enter_time!),

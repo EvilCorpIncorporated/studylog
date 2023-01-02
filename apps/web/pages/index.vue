@@ -15,7 +15,16 @@ const id = $computed(() => Number(idRaw));
 
 async function addEvents() {
   const events = await $client.addEvents.mutate({
-    events: [{ enter_time: new Date(), exit_time: new Date('2023-01-25') }],
+    events: [
+      {
+        tab: {
+          url: 'https://www.google.com',
+          title: 'Google',
+          active: true,
+        },
+        enter_time: new Date(),
+      },
+    ],
     user_id: 'foobar',
   });
   console.log(events);
