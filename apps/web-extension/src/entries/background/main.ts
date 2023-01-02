@@ -1,7 +1,7 @@
 import browser from 'webextension-polyfill';
 import { setupAlarms } from './alarms';
 import { setupTabEventHandlers } from './events';
-import { setStorageDefaults } from './storage';
+import { getStorage, setStorage, setStorageDefaults } from './storage';
 
 function setupExtensionEvents() {
   // setup browser event handlers
@@ -11,15 +11,16 @@ function setupExtensionEvents() {
 
 function onInstalled() {
   setStorageDefaults();
+  initializeUserIdSingleton();
 }
 
-function initializeUserIdSingleton() { // TODO: consider changing this functionality
+export async function initializeUserIdSingleton() { // TODO: consider changing this functionality
    // check if a userId is set
-   const userId = localStorage.getItem('userId');
-   if (!userId) {
+   const userId = await getStorage('userId');
+   if (!userId || userId === '') {
        // generate a userId
        const newUserId = generateUserId();
-       localStorage.setItem('userId', newUserId);
+       setStorage({ userId: newUserId });
    }
 }
 

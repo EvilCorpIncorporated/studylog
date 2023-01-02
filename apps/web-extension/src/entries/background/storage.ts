@@ -1,6 +1,7 @@
-import { TabEvent } from './tabs';
 import type { Tabs } from 'webextension-polyfill';
 import browser from 'webextension-polyfill';
+import { initializeUserIdSingleton } from './main';
+import type { TabEvent } from './tabs';
 
 export async function addIdleEventToLocalStore(idleEvent: IdleEvent): Promise<void> {
     const idleEvents = await getStorage('idleEvents');
@@ -26,7 +27,7 @@ export async function getStorage<K extends keyof StorageData>(
   return result[key];
 }
 
-export async function getTabsFromLocalStore(): Promise<Tabs.Tab[]> {
+export async function getTabsFromLocalStore(): Promise<TabEvent[]> {
   const tabs = await getStorage('tabs');
   return tabs;
 }
@@ -40,7 +41,7 @@ export interface IdleEvent {
 
 interface StorageData {
     userId: string;
-    tabs: Tabs.Tab[];
+    tabs: TabEvent[];
     filteredTabs: Tabs.Tab[];
     idleEvents: IdleEvent[];
   }
@@ -55,14 +56,26 @@ interface StorageData {
 
 
 export async function getUserId() {
-    return await getStorage('userId');
+  initializeUserIdSingleton(); // TODO: this is a hack, fix it - this is a hack to ensure that the userId is initialized
+  
+  const user_id = await getStorage('userId');
+
+  return user_id;
+
 }
 
-export async function clearFilteredTabsState() {
+export async function clearFilteredTabsState() { // TODO: duplicate code
   const defaults: Partial<StorageData> = {
     filteredTabs: [],
   };
 
+  await setStorage(defaults);
+}
+
+export async function clearIdleEventsState() { // TODO: duplicate code
+  const defaults: Partial<StorageData> = {
+    idleEvents: [],
+  };
   await setStorage(defaults);
 }
 

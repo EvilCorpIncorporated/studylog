@@ -1,6 +1,6 @@
 import type { TabEvent } from './tabs';
 import client from '~/trpc';
-import { getUserId } from './storage';
+import { clearIdleEventsState, clearTabsState, getUserId } from './storage';
 // send heartbeat to server
 
 async function prepareEventsBeforeSending(events: TabEvent[]) {
@@ -23,15 +23,30 @@ async function prepareEventsBeforeSending(events: TabEvent[]) {
 }
 export async function sendEvents(events: TabEvent[]) {
   // move this to the api file
-  console.log('should send events to the server');
+
 
   const eventsToSend = await prepareEventsBeforeSending(events);
   const user_id = await getUserId()
-  client.addEvents.mutate(
+  console.log('user_id', user_id)
+
+  if ( user_id === null || user_id === '') {
+    console.log('user_id is null')
+    return;
+  }
+  console.log('should send events to the server');
+  const response = await client.addEvents.mutate(
     {
       user_id,
       events: eventsToSend,
     }
   )
+  console.log('response', response)
 
+  // make sure the response is successful, to clear the local storage
+  if (response.length > 0) {
+    // clear local storage
+    console.log('clearing local storage')
+    clearTabsState();
+    clearIdleEventsState();  
+  }
 }

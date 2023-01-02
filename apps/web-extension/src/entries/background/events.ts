@@ -1,8 +1,7 @@
-import { TabEvent } from './tabs';
 // define events here
 
 import browser from 'webextension-polyfill';
-import type { Tabs } from 'webextension-polyfill';
+import type { TabEvent } from './tabs';
 import {addTabToLocalStore} from './storage';
 
 // onTabActivatedHandler, onTabUpdatedHandler, setupEventHandlers
@@ -28,12 +27,12 @@ export async function onTabActivatedHandler(
 ) {
   // get the active tab
     const queryOptions = { active: true};
-    let [tab] = await browser.tabs.query(queryOptions);
+    const [tab] = await browser.tabs.query(queryOptions);
 
     if (tab.status == 'complete') {
       // add tab to localStorage
       const tabEvent:TabEvent = {
-        tab: tab,
+        tab,
         lastAccessed: new Date().getTime(),
       }
       console.log('onTabActivated TabEvent',tabEvent);
@@ -48,7 +47,7 @@ export function onTabUpdatedHandler(
 ) {
   if (changeInfo.status == 'complete' && tab.active) {
     const tabEvent:TabEvent = {
-      tab: tab,
+      tab,
       lastAccessed: new Date().getTime(),
     }
     console.log('onUpdatedHandler TabEvent',tabEvent);

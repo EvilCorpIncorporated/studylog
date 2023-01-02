@@ -1,6 +1,7 @@
 import browser from 'webextension-polyfill';
 import { sendEvents } from './api';
-import { isAllowedWebsite, processEvents, TabEvent } from './tabs';
+import type { TabEvent} from './tabs';
+import { processEvents } from './tabs';
 import type { IdleEvent } from './storage';
 import {
   addIdleEventToLocalStore,
@@ -75,7 +76,7 @@ async function getEvents(): Promise<{
   idleEvents: IdleEvent[];
 }> {
   // get events from local storage
-  const tabEvents = await getTabsFromLocalStore();
+  const tabEvents = await getTabsFromLocalStore() as TabEvent[];
   const idleEvents = await getIdleEventsFromLocalStore();
   return { tabEvents, idleEvents };
 }
