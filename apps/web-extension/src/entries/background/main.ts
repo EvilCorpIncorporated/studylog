@@ -13,7 +13,7 @@ function onInstalled() {
   setStorageDefaults();
 }
 
-function initializeUserIdSingleton() {
+function initializeUserIdSingleton() { // TODO: consider changing this functionality
    // check if a userId is set
    const userId = localStorage.getItem('userId');
    if (!userId) {

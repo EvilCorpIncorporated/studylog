@@ -3,7 +3,7 @@ import type { Tabs } from 'webextension-polyfill';
 import browser from 'webextension-polyfill';
 
 export async function addIdleEventToLocalStore(idleEvent: IdleEvent): Promise<void> {
-    let idleEvents = await getStorage('idleEvents');
+    const idleEvents = await getStorage('idleEvents');
     idleEvents.push(idleEvent);
     await setStorage({ idleEvents });
 }
@@ -14,7 +14,7 @@ export async function getIdleEventsFromLocalStore(): Promise<IdleEvent[]> {
 }
 
 export async function addTabToLocalStore(tab: TabEvent): Promise<void> { // TODO: change name - input argument is not a tab
-    let tabs = await getStorage('tabs');
+    const tabs = await getStorage('tabs');
     tabs.push(tab);
     await setStorage({ tabs });
 }
@@ -54,6 +54,9 @@ interface StorageData {
   }
 
 
+export async function getUserId() {
+    return await getStorage('userId');
+}
 
 export async function clearFilteredTabsState() {
   const defaults: Partial<StorageData> = {

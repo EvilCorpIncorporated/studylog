@@ -7,6 +7,11 @@ const zod_input = z.object({
   user_id: z.string(),
   events: z.array(
     z.object({
+      tab: z.object({
+        active: z.boolean(),
+        url: z.string(),
+        title: z.string(),
+      }),
       enter_time: z.date({ coerce: true }),
     }),
   ),
@@ -14,6 +19,7 @@ const zod_input = z.object({
 
 async function _mutation(edgedb: Client, req: any) {
   const { events, user_id } = req.input;
+
   const query = e.params({ events: e.json }, $ => {
     return e.for(e.json_array_unpack($.events), event => {
       return e.insert(e.Event, {
