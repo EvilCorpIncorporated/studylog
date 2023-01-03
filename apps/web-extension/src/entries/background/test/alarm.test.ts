@@ -8,7 +8,7 @@
 //     });
 // }
 
-it('should set up the alarm', async () => {
+it('should set up the alarm', () => {
   expect(2).toBe(2);
 });
 

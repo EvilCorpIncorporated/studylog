@@ -2,7 +2,7 @@
 
 import browser from 'webextension-polyfill';
 import type { TabEvent } from './tabs';
-import {addTabToLocalStore} from './storage';
+import { addTabToLocalStore } from './storage';
 
 // onTabActivatedHandler, onTabUpdatedHandler, setupEventHandlers
 export function setupEventHandlers() {
@@ -22,22 +22,20 @@ export function setupTabEventHandlers() {
 /**
  * Whenever a active tab is changed it records a heartbeat with that tab url.
  */
-export async function onTabActivatedHandler(
-  _activeInfo: browser.Tabs.OnActivatedActiveInfoType,
-) {
+export async function onTabActivatedHandler(_activeInfo: browser.Tabs.OnActivatedActiveInfoType) {
   // get the active tab
-    const queryOptions = { active: true};
-    const [tab] = await browser.tabs.query(queryOptions);
+  const queryOptions = { active: true };
+  const [tab] = await browser.tabs.query(queryOptions);
 
-    if (tab.status == 'complete') {
-      // add tab to localStorage
-      const tabEvent:TabEvent = {
-        tab,
-        lastAccessed: new Date().getTime(),
-      }
-      console.log('onTabActivated TabEvent',tabEvent);
-      addTabToLocalStore(tabEvent);
-    }
+  if (tab.status === 'complete') {
+    // add tab to localStorage
+    const tabEvent: TabEvent = {
+      tab,
+      lastAccessed: new Date().getTime(),
+    };
+    console.debug('onTabActivated TabEvent', tabEvent);
+    await addTabToLocalStore(tabEvent);
+  }
 }
 
 export function onTabUpdatedHandler(
@@ -45,14 +43,13 @@ export function onTabUpdatedHandler(
   changeInfo: browser.Tabs.OnUpdatedChangeInfoType,
   tab: browser.Tabs.Tab,
 ) {
-  if (changeInfo.status == 'complete' && tab.active) {
-    const tabEvent:TabEvent = {
+  if (changeInfo.status === 'complete' && tab.active) {
+    const tabEvent: TabEvent = {
       tab,
       lastAccessed: new Date().getTime(),
-    }
-    console.log('onUpdatedHandler TabEvent',tabEvent);
+    };
+    console.debug('onUpdatedHandler TabEvent', tabEvent);
 
-    addTabToLocalStore(tabEvent);
+    await addTabToLocalStore(tabEvent);
   }
 }
-

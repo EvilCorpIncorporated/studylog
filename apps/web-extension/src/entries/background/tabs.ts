@@ -1,22 +1,21 @@
-import type {Tabs} from 'webextension-polyfill';
+import type { Tabs } from 'webextension-polyfill';
 import type { IdleEvent } from './storage';
 
-
-
 export function filterTabs(tabs: Tabs.Tab[]) {
-  return filterTabsNotAllowedWebsites(tabs)
+  return filterTabsNotAllowedWebsites(tabs);
 }
 
-export function isAllowedWebsite(url?: string): boolean { // TODO: add unit test; fix: function name does not match the code functionality
+export function isAllowedWebsite(url?: string): boolean {
+  // TODO: add unit test; fix: function name does not match the code functionality
   const allowedWebsites: string[] = [
     // learning websites
-    "https://pluralsight.com",
-    "https://github.com",
-    "https://stackoverflow.com",
-    "https://medium.com",
-    "https://developer.mozilla.org",
-    "https://mozilla.com"
-  ]
+    'https://pluralsight.com',
+    'https://github.com',
+    'https://stackoverflow.com',
+    'https://medium.com',
+    'https://developer.mozilla.org',
+    'https://mozilla.com',
+  ];
   const allowedWebsitesRegex = new RegExp(`^(${allowedWebsites.join('|')})`);
   if (!url) {
     return false;
@@ -24,10 +23,9 @@ export function isAllowedWebsite(url?: string): boolean { // TODO: add unit test
   return allowedWebsitesRegex.test(url);
 }
 
-
 export function filterTabsNotAllowedWebsites(tabs: Tabs.Tab[]): Tabs.Tab[] {
-    console.log('should filter tabs')
-    return tabs.filter((tab) => isAllowedWebsite(tab.url));
+  console.debug('should filter tabs');
+  return tabs.filter(tab => isAllowedWebsite(tab.url));
 }
 
 export interface TabEvent {
@@ -35,13 +33,13 @@ export interface TabEvent {
   lastAccessed: number; // TODO: not representative of the data - should be lastAccessedTime if any. this data point is captured when the tab has finished loading
 }
 
-
-export function processEvents(tabEvents: TabEvent[], idleEvents: IdleEvent[]) { // TODO: add types
+export function processEvents(tabEvents: TabEvent[], idleEvents: IdleEvent[]) {
+  // TODO: add types
   // process events
-  let validTabEvents:TabEvent[] = [];
+  let validTabEvents: TabEvent[] = [];
 
-  console.log('tabEvents', tabEvents);
-  console.log('idleEvents', idleEvents);
+  console.debug('tabEvents', tabEvents);
+  console.debug('idleEvents', idleEvents);
   const allowedWebsitesTabEvents = getAllowedWebsitesTabEvents(tabEvents); // TODO: there might be a more desxcriptive name for this variable
 
   const activeIdleEvents = getActiveIdleEvents(idleEvents); // TODO: misleading function name/ not descriptive enough
@@ -53,13 +51,12 @@ export function processEvents(tabEvents: TabEvent[], idleEvents: IdleEvent[]) { 
 
     if (allowedActiveTabEvents.length) {
       validTabEvents = validTabEvents.concat(allowedActiveTabEvents);
-    } 
+    }
   });
 
-  console.log('validTabEvents', validTabEvents)
+  console.debug('validTabEvents', validTabEvents);
   return validTabEvents;
 }
-
 
 function getActiveIdleEvents(idleEvents: IdleEvent[]) {
   return idleEvents.filter((idleEvent: IdleEvent) => {
@@ -67,19 +64,17 @@ function getActiveIdleEvents(idleEvents: IdleEvent[]) {
   });
 }
 
-
-
 function getAllowedWebsitesTabEvents(tabEvents: TabEvent[]) {
   return tabEvents.filter((tabEvent: TabEvent) => {
     return isAllowedWebsite(tabEvent.tab.url);
-  })
-};
+  });
+}
 
 function getTabEventsInIdleEventTimeRange(tabEvents: TabEvent[], idleEvent: IdleEvent) {
   return tabEvents.filter((tabEvent: TabEvent) => {
-    const condition = tabEvent.lastAccessed >= idleEvent.startTime && tabEvent.lastAccessed <= idleEvent.endTime
+    const condition = tabEvent.lastAccessed >= idleEvent.startTime && tabEvent.lastAccessed <= idleEvent.endTime;
     if (condition) {
-      console.log('tabEvent: ', tabEvent)
+      console.debug('tabEvent: ', tabEvent);
     }
     return tabEvent.lastAccessed >= idleEvent.startTime && tabEvent.lastAccessed <= idleEvent.endTime;
   });

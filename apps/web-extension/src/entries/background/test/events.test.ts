@@ -2,11 +2,7 @@
 
 import type { MockzillaEventOf } from 'mockzilla-webextension';
 import { mockEvent } from 'mockzilla-webextension';
-import {
-  onTabActivatedHandler,
-  onTabUpdatedHandler,
-  setupEventHandlers,
-} from '../events';
+import { onTabActivatedHandler, onTabUpdatedHandler, setupEventHandlers } from '../events';
 
 describe('MyEventHandler', () => {
   // let onRemoved: MockzillaEventOf<typeof mockBrowser.tabs.onRemoved>;

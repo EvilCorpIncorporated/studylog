@@ -24,13 +24,7 @@ const sharedManifest: Partial<Manifest.WebExtensionManifest> = {
     page: 'src/entries/options/index.html',
     open_in_tab: true,
   },
-  permissions: [
-    'alarms',
-    'activeTab',
-    'storage',
-    'tabs',
-    'idle'
-  ],
+  permissions: ['alarms', 'activeTab', 'storage', 'tabs', 'idle'],
 };
 
 const browserAction = {
@@ -66,9 +60,7 @@ const manifestV3: Partial<Manifest.WebExtensionManifest> = {
   host_permissions: ['*://*/*'],
 };
 
-export function getManifest(
-  manifestVersion: number,
-): Manifest.WebExtensionManifest {
+export function getManifest(manifestVersion: number): Manifest.WebExtensionManifest {
   const manifest: Partial<Manifest.WebExtensionManifest> = {
     author: pkg.author,
     description: pkg.description,
@@ -92,7 +84,5 @@ export function getManifest(
     };
   }
 
-  throw new Error(
-    `Missing manifest definition for manifestVersion ${manifestVersion}`,
-  );
+  throw new Error(`Missing manifest definition for manifestVersion ${manifestVersion}`);
 }
