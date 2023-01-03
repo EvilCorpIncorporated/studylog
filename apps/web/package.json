@@ -2,6 +2,7 @@
   "name": "@studylog/web",
   "private": true,
   "scripts": {
+    "start": "nuxt start",
     "build": "nuxt build",
     "dev": "nuxt dev",
     "test": "nuxt test",
