@@ -12,7 +12,7 @@
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "files": [
-    "dbschema/edgeql-js"
+    "dist"
   ],
   "scripts": {
     "db:generate": "generate edgeql-js --target=esm --out=dist"
