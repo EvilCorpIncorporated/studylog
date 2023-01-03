@@ -8,14 +8,27 @@ export function filterTabs(tabs: Tabs.Tab[]) {
 export function isAllowedWebsite(url?: string): boolean {
   // TODO: add unit test; fix: function name does not match the code functionality
   const allowedWebsites: string[] = [
-    // learning websites
-    'https://pluralsight.com',
-    'https://github.com',
-    'https://stackoverflow.com',
-    'https://medium.com',
-    'https://developer.mozilla.org',
-    'https://mozilla.com',
-  ];
+    "https://pluralsight.com",
+    "https://github.com",
+    "https://stackoverflow.com",
+    "https://medium.com",
+    "https://developer.mozilla.org",
+    "https://mozilla.com",
+    "https://w3schools.com",
+    "https://towardsdatascience.com",
+    "https://freecodecamp.org",
+    "https://udemy.com",
+    "https://udacity.com",
+    "https://coursera.org",
+    "https://edx.org",
+    "https://khanacademy.org",
+    "https://codecademy.com",
+    "https://code.org",
+    "https://sololearn.com",
+    "https://skillshare.com",
+    "https://datacamp.com",
+
+  ]
   const allowedWebsitesRegex = new RegExp(`^(${allowedWebsites.join('|')})`);
   if (!url) {
     return false;
