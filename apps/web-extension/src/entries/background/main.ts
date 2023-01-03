@@ -9,29 +9,29 @@ function setupExtensionEvents() {
   browser.runtime.onStartup.addListener(onStartUp);
 }
 
-function onInstalled() {
-  setStorageDefaults();
-  initializeUserIdSingleton();
+async function onInstalled() {
+  await setStorageDefaults();
+  await initializeUserIdSingleton();
 }
 
-export async function initializeUserIdSingleton() { // TODO: consider changing this functionality
-   // check if a userId is set
-   const userId = await getStorage('userId');
-   if (!userId || userId === '') {
-       // generate a userId
-       const newUserId = generateUserId();
-       setStorage({ userId: newUserId });
-   }
+export async function initializeUserIdSingleton() {
+  // TODO: consider changing this functionality
+  // check if a userId is set
+  const userId = await getStorage('userId');
+  if (!userId || userId === '') {
+    // generate a userId
+    const newUserId = generateUserId();
+    await setStorage({ userId: newUserId });
+  }
 }
-
-
 
 function generateUserId() {
-    return Math.random().toString(36).substring(2, 15);
+  return Math.random().toString(36).substring(2, 15);
 }
 
-function onStartUp() { // TODO: move this to a different file
-  initializeUserIdSingleton();
+async function onStartUp() {
+  // TODO: move this to a different file
+  await initializeUserIdSingleton();
 }
 
 function setup() {
@@ -41,4 +41,4 @@ function setup() {
   setupExtensionEvents();
 }
 
-setup()
+setup();

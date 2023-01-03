@@ -43,7 +43,6 @@ function getCurrentTime() {
   return Date.now();
 }
 
-
 export async function onActivatedHandler({
   // gets called when a tab is activated, creates tab event, and updates the 'tabs' array, sets storage
   tabId,

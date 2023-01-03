@@ -1,13 +1,9 @@
 import browser from 'webextension-polyfill';
 import { sendEvents } from './api';
-import type { TabEvent} from './tabs';
+import type { TabEvent } from './tabs';
 import { processEvents } from './tabs';
 import type { IdleEvent } from './storage';
-import {
-  addIdleEventToLocalStore,
-  getIdleEventsFromLocalStore,
-  getTabsFromLocalStore,
-} from './storage';
+import { addIdleEventToLocalStore, getIdleEventsFromLocalStore, getTabsFromLocalStore } from './storage';
 
 // Create a new alarm for heartbeat
 const idleThreshHoldSeconds = 60;
@@ -16,7 +12,7 @@ function convertSecondsToMilliseconds(seconds: number) {
 }
 
 async function onAlarmIdle() {
-  recordIdleEvent();
+  await recordIdleEvent();
 }
 
 const alarmNameConstants = {
@@ -36,38 +32,34 @@ export function setupAlarms() {
   });
   browser.alarms.create(alarmNameConstants.idleAlarm, { periodInMinutes: 1 });
 
-  browser.alarms.onAlarm.addListener(async (alarm: any) => {
-    console.log('alarm', alarm);
-    alarmHandlerFunctions[alarm.name]();
+  browser.alarms.onAlarm.addListener(async alarm => {
+    console.debug('alarm', alarm);
+    await alarmHandlerFunctions[alarm.name]();
   });
 }
 
-function recordIdleEvent() {
+async function recordIdleEvent() {
   // add an idle event
-  browser.idle
-    .queryState(idleThreshHoldSeconds)
-    .then((state: 'idle' | 'active' | 'locked') => {
-      const endTime = new Date().getTime();
-      const startTime =
-        endTime - convertSecondsToMilliseconds(idleThreshHoldSeconds);
+  const state = await browser.idle.queryState(idleThreshHoldSeconds);
+  const endTime = new Date().getTime();
+  const startTime = endTime - convertSecondsToMilliseconds(idleThreshHoldSeconds);
 
-      const idleEvent: IdleEvent = {
-        state,
-        startTime,
-        endTime,
-      };
-      console.log('idleEvent', idleEvent);
-      // add event to local storage
-      addIdleEventToLocalStore(idleEvent);
-    });
+  const idleEvent: IdleEvent = {
+    state,
+    startTime,
+    endTime,
+  };
+  console.debug('idleEvent', idleEvent);
+  // add event to local storage
+  await addIdleEventToLocalStore(idleEvent);
 }
 
 async function onAlarmHeartbeat() {
-  console.log('heartbeat alarm');
+  console.debug('heartbeat alarm');
 
   const events = await getEvents();
   const processedEvents = processEvents(events.tabEvents, events.idleEvents);
-  sendEvents(processedEvents);
+  await sendEvents(processedEvents);
 }
 
 async function getEvents(): Promise<{
@@ -76,7 +68,7 @@ async function getEvents(): Promise<{
   idleEvents: IdleEvent[];
 }> {
   // get events from local storage
-  const tabEvents = await getTabsFromLocalStore() as TabEvent[];
+  const tabEvents = await getTabsFromLocalStore();
   const idleEvents = await getIdleEventsFromLocalStore();
   return { tabEvents, idleEvents };
 }

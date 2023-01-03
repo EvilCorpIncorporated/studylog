@@ -1,0 +1,3 @@
+# FIXME: temporary until we can use multiple `tsconfig` files with `@antfu/eslint-config`.
+manifest.ts
+vite.config.ts
