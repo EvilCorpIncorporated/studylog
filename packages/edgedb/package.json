@@ -1,0 +1,27 @@
+{
+  "name": "@studylog/edgedb",
+  "version": "1.0.0",
+  "private": true,
+  "description": "",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs"
+    }
+  },
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "db:generate": "generate edgeql-js --target=esm --out=dist"
+  },
+  "devDependencies": {
+    "@edgedb/generate": "^0.0.7"
+  },
+  "peerDependencies": {
+    "edgedb": "^1.0.2"
+  },
+  "license": "MIT"
+}

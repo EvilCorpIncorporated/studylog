@@ -1,62 +1,57 @@
 import { z } from 'zod';
+import e from '@studylog/edgedb';
+import type { Client } from 'edgedb';
 import { publicProcedure, router } from '..';
 
-let currentId = 2;
-
-export interface User {
-  id: number;
-  name: {
-    first: string;
-    middle?: string | undefined;
-    last: string;
-  };
-}
-
-const USERS: User[] = [
-  {
-    id: 1,
-    name: {
-      first: 'John',
-      last: 'Doe',
-    },
-  },
-  {
-    id: 2,
-    name: {
-      first: 'Robert',
-      middle: 'Jacob',
-      last: 'Smith',
-    },
-  },
-];
-
-export const appRouter = router({
-  getUser: publicProcedure
-    .input(z.object({ id: z.number() }))
-    .query(({ input }) => {
-      const { id } = input;
-      return USERS.find(user => user.id === id);
-    }),
-  addUser: publicProcedure
-    .input(
-      z.object({
-        name: z.object({
-          first: z.string(),
-          middle: z.optional(z.string()),
-          last: z.string(),
-        }),
+const zod_input = z.object({
+  user_id: z.string(),
+  events: z.array(
+    z.object({
+      tab: z.object({
+        active: z.boolean(),
+        url: z.string(),
+        title: z.string(),
       }),
-    )
-    .mutation(req => {
-      const { name } = req.input;
-      const newUser = {
-        id: ++currentId,
-        name,
-      } as User; // HACK: we shouldn't need to coerce here.
-      USERS.push(newUser);
-      return newUser;
+      enter_time: z.date({ coerce: true }),
     }),
+  ),
 });
 
-// export type definition of API
-export type AppRouter = typeof appRouter;
+async function _mutation(edgedb: Client, req: any) {
+  // TODO: change the name of this function - not informative
+  // TODO: break this function down, this function is too clutered.
+  const { events, user_id } = req.input;
+
+  const query = e.params({ events: e.json }, $ => {
+    return e.for(e.json_array_unpack($.events), event => {
+      // const object_unpack = e.json_object_unpack(event)
+      return e.insert(e.Event, {
+        tab: e.insert(e.Tab, {
+          // TODO: remove '!' assure that the properties are not null
+          active: e.cast(e.bool, event.tab!.active!),
+          url: e.cast(e.str, event.tab!.url!),
+          title: e.cast(e.str, event.tab!.title!),
+        }),
+        // TODO: remove '!', assure that the enter_time is not null
+        enter_time: e.cast(e.datetime, event.enter_time!),
+        user: e.insert(e.User, { user_id }).unlessConflict(user => ({
+          on: user.user_id,
+          else: user,
+        })),
+      });
+    });
+  });
+  const result = await query.run(edgedb, { events });
+  return result;
+}
+
+export function createAppRouter(edgedb: Client) {
+  return router({
+    addEvents: publicProcedure.input(zod_input).mutation(async req => {
+      return await _mutation(edgedb, req);
+    }),
+  });
+}
+
+// Export type definition of API.
+export type AppRouter = ReturnType<typeof createAppRouter>;

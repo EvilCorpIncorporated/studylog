@@ -77,7 +77,6 @@ web_modules/
 .yarn-integrity
 
 # dotenv environment variable files
-.env
 .env.development.local
 .env.test.local
 .env.production.local
@@ -150,3 +149,5 @@ dist
 # Stray lockfiles from other package managers
 package-lock.json
 yarn.lock
+apps/web-extension/auto-imports.d.ts
+apps/web-extension/components.d.ts

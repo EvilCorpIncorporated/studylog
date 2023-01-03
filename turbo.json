@@ -3,15 +3,15 @@
   "globalDependencies": [
     "packages/tsconfig/*.json",
     "**/.env{,.*}",
-    "**/!.env.example",
+    "**/!.env{,.*}.example",
     "**/tsconfig{,.*}.json",
-    "**/vite.config.ts",
-    "**/jest.config.c?js",
+    "**/vite{,st}.config.ts",
+    "**/jest.config.js",
     "**/.eslintrc.c?js"
   ],
   "pipeline": {
     "dev": {
-      "dependsOn": ["^db:generate"],
+      "dependsOn": ["^db:generate", "@studylog/trpc#build"],
       "cache": false
     },
     "build": {
@@ -30,9 +30,6 @@
       "outputs": []
     },
     "db:generate": {
-      "cache": false
-    },
-    "db:push": {
       "cache": false
     }
   }

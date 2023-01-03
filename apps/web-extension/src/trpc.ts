@@ -1,4 +1,4 @@
-import { httpBatchLink, createTRPCProxyClient } from '@trpc/client';
+import { createTRPCProxyClient, httpBatchLink } from '@trpc/client';
 // HACK: the following doesn't seem to work, has something to do with package.json subpath exports.
 // import type { AppRouter } from '@studylog/trpc/routers';
 import type { AppRouter } from '@studylog/trpc/src/routers';

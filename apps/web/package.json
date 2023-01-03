@@ -2,15 +2,14 @@
   "name": "@studylog/web",
   "private": true,
   "scripts": {
+    "start": "nuxt start",
     "build": "nuxt build",
     "dev": "nuxt dev",
     "test": "nuxt test",
     "lint": "eslint . --fix",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare",
-    "db:generate": "prisma generate",
-    "db:push": "prisma db push --skip-generate"
+    "postinstall": "nuxt prepare"
   },
   "devDependencies": {
     "@nuxt/eslint-config": "^0.1.1",
@@ -19,20 +18,14 @@
     "@vueuse/nuxt": "^9.6.0",
     "@vueuse/router": "^9.6.0",
     "nuxt": "3.0.0",
-    "prisma": "^4.7.1",
     "vitest": "^0.25.8"
   },
   "dependencies": {
-    "@sidebase/nuxt-prisma": "^0.1.0",
+    "@studylog/edgedb": "workspace:*",
     "@studylog/trpc": "workspace:*",
     "@trpc/client": "^10.5.0",
+    "edgedb": "^1.0.2",
+    "nuxt-edgedb": "^1.0.0",
     "trpc-nuxt": "^0.4.3"
-  },
-  "pnpm": {
-    "peerDependencyRules": {
-      "ignoreMissing": [
-        "@prisma/client"
-      ]
-    }
   }
 }

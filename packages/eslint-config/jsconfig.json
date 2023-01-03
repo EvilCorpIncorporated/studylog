@@ -1,6 +1,6 @@
 {
   "$schema": "http://json.schemastore.org/jsconfig",
-  "extends": "tsconfig/node.json",
+  "extends": "@studylog/tsconfig/node.json",
   "include": ["**/*.js", "**/*.cjs"],
   "exclude": ["node_modules"]
 }
