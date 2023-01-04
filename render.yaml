@@ -1,0 +1,13 @@
+databases:
+  - name: postgres
+
+services:
+  - type: pserv
+    name: edgedb
+    env: docker
+    repo: https://github.com/EvilCorpIncorporated/studylog
+    envVars:
+      - key: EDGEDB_SERVER_BACKEND_DSN
+        fromDatabase:
+          name: postgres
+          property: connectionString
