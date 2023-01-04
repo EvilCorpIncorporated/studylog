@@ -1,10 +1,12 @@
 databases:
   - name: postgres
+    plan: free
 
 services:
   - type: pserv
     name: edgedb
     env: docker
+    plan: free
     repo: https://github.com/EvilCorpIncorporated/studylog
     envVars:
       - key: EDGEDB_SERVER_BACKEND_DSN
