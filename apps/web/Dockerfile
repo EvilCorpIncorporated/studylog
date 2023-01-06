@@ -1,6 +1,9 @@
 # TODO: Remove dev deps from prod build
 # BUILDER - Stage 1
 FROM cimg/node:19.0 as builder
+RUN pwd
+RUN ls -la
+RUN ls -la workspace
 WORKDIR /app
 COPY . .
 RUN pwd
