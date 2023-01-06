@@ -3,7 +3,7 @@
 FROM cimg/node:19.0 as builder
 WORKDIR /app
 COPY . .
-RUN npx turbo prune --scope=web --docker
+RUN npx turbo prune --scope=@studylog/web --docker
 
 # INSTALLER - Stage 2
 FROM cimg/node:19.0 as installer
