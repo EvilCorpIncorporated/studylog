@@ -3,6 +3,8 @@
 FROM cimg/node:19.0 as builder
 WORKDIR /app
 COPY . .
+RUN pwd
+RUN ls -la
 RUN npx turbo prune --scope=web --docker
 
 # INSTALLER - Stage 2
