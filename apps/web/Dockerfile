@@ -2,9 +2,8 @@
 # BUILDER - Stage 1
 FROM cimg/node:19.0 as builder
 WORKDIR /app
-RUN pnpm i -g turbo
 COPY . .
-RUN turbo prune --scope=web --docker
+RUN npx turbo prune --scope=web --docker
 
 # INSTALLER - Stage 2
 FROM cimg/node:19.0 as installer
