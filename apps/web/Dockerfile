@@ -1,15 +1,15 @@
 # TODO: Remove dev deps from prod build
 # BUILDER - Stage 1
-FROM node:alpine as builder
+FROM cimg/node:19.0 as builder
 WORKDIR /app
-RUN apk update && yarn global add turbo
+RUN apk update && pnpm i -g turbo
 COPY . .
 RUN turbo prune --scope=web --docker
 
 # INSTALLER - Stage 2
-FROM node:alpine as installer
+FROM cimg/node:19.0 as installer
 WORKDIR /app
-RUN apk update && apk add g++ make py3-pip && corepack enable
+RUN apk update && apk add g++ make py3-pip
 
 # First install dependencies (as they change less often)
 COPY --from=builder /app/out/full/.gitignore ./.gitignore
@@ -24,7 +24,7 @@ RUN pnpm install -r --offline --ignore-scripts
 RUN pnpm turbo run build --filter=web
 
 # # RUNNER - Stage 3
-FROM node:alpine AS runner
+FROM cimg/node:19.0 AS runner
 WORKDIR /app
 
 # # Don't run production as root
