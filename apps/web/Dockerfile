@@ -2,14 +2,13 @@
 # BUILDER - Stage 1
 FROM cimg/node:19.0 as builder
 WORKDIR /app
-RUN apk update && pnpm i -g turbo
+RUN pnpm i -g turbo
 COPY . .
 RUN turbo prune --scope=web --docker
 
 # INSTALLER - Stage 2
 FROM cimg/node:19.0 as installer
 WORKDIR /app
-RUN apk update && apk add g++ make py3-pip
 
 # First install dependencies (as they change less often)
 COPY --from=builder /app/out/full/.gitignore ./.gitignore
