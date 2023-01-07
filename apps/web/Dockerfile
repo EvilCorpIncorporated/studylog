@@ -21,9 +21,13 @@ RUN pnpm fetch
 # Build the project and its dependencies
 COPY --from=builder /app/out/full/ .
 RUN pnpm install -r --offline --ignore-scripts
-ARG EDGEDB_DSN
 ARG NITRO_PRESET
-RUN pnpm turbo run build --filter=web
+ARG EDGEDB_CLIENT_TLS_SECURITY
+RUN --mount=type=secret,id=EDGEDB_DSN \
+    EDGEDB_DSN="$(cat /run/secrets/EDGEDB_DSN)" \
+    NITRO_PRESET=${NITRO_PRESET} \
+    EDGEDB_CLIENT_TLS_SECURITY=${EDGEDB_CLIENT_TLS_SECURITY} \
+    pnpm turbo run build --filter=web
 
 # # RUNNER - Stage 3
 FROM node:19 AS runner

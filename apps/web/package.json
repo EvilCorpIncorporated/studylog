@@ -26,6 +26,8 @@
     "@trpc/client": "^10.5.0",
     "edgedb": "^1.0.2",
     "nuxt-edgedb": "^1.0.0",
-    "trpc-nuxt": "^0.4.3"
+    "ofetch": "^1.0.0",
+    "trpc-nuxt": "^0.4.3",
+    "vue": "^3.2.38"
   }
 }
