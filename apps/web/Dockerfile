@@ -22,6 +22,7 @@ RUN pnpm fetch
 COPY --from=builder /app/out/full/ .
 RUN pnpm install -r --offline --ignore-scripts
 ARG EDGEDB_DSN
+ARG NITRO_PRESET
 RUN pnpm turbo run build --filter=web
 
 # # RUNNER - Stage 3
