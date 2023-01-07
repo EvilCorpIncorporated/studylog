@@ -21,6 +21,7 @@ RUN pnpm fetch
 # Build the project and its dependencies
 COPY --from=builder /app/out/full/ .
 RUN pnpm install -r --offline --ignore-scripts
+ARG EDGEDB_DSN
 RUN pnpm turbo run build --filter=web
 
 # # RUNNER - Stage 3
