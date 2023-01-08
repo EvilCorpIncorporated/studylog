@@ -3,6 +3,10 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'apps/web/**/*'
+      - 'fly.toml'
+      - 'fly.*.toml'
 env:
   FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
 jobs:
@@ -12,4 +16,4 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: superfly/flyctl-actions/setup-flyctl@master
-      - run: flyctl deploy --build-secret EDGEDB_DSN=${{secrets.EDGEDB_DSN}} --remote-only
+      - run: flyctl deploy --build-secret EDGEDB_DSN=${{ secrets.EDGEDB_DSN }} --remote-only
